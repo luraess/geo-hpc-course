@@ -4,7 +4,7 @@ Parallel CPU and GPU high-performance computing - crash course
 ## Description
 This crash course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This crash course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
 
-The goal of this crash course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable.
+The goal of this crash course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable \[[1][JuliaCon20a], [2][JuliaCon20b], [3][JuliaCon19]\].
 
 ## Objectives
 We will design and implement an iterative numerical algorithm that resolves (non-linear) diffusion in 2D for two applications:
@@ -46,6 +46,13 @@ We will use (2) as playground to address:
 
 ## Pre-requisite
 _... work in progress ..._
+The hands-on format prioritises the _learning-by-doing_ thus not much preliminary knowledge is required. Basic programming skills won't hurt though. The course will build upon the use of the [Julia] programming language. 
+
+#### Performance metric to compare the various code implementations
+Majority of stencil based codes as in this course are memory bounded, meaning the limiting factor in performance is the rate at which memory is transferred from and back between the memory and the arithmetic units.
+
+#### Technical side
+On the CPU, multi-threading is made accessible via [Base.Threads] and the environment variable [JULIA_NUM_THREADS] can be used to define the number of cores to use on the CPU, e.g. `export JULIA_NUM_THREADS=2` to enable 2 threads (2 CPU cores). The [CUDA.jl] module permits to launch compute kernels on Nvidia GPUs within Julia. [JuliaGPU] provides further reading and introductory material about GPU ecosystem within [Julia].
 - 
 
 ## Material
@@ -56,7 +63,22 @@ _... work in progress ..._
 
 
 ## Further reading
-_... work in progress ..._
+\[1\] [Omlin, S., Räss, L., Kwasniewski, G., Malvoisin, B., & Podladchikov, Y. Y. (2020). Solving Nonlinear Multi-Physics on GPU Supercomputers with Julia. JuliaCon Conference, virtual.][JuliaCon20a]
+
+\[2\] [Räss, L., Reuber, G., Omlin, S. (2020). Multi-Physics 3-D Inversion on GPU Supercomputers with Julia. JuliaCon Conference, virtual.][JuliaCon20b]
+
+\[3\] [Räss, L., Omlin, S., & Podladchikov, Y. Y. (2019). Porting a Massively Parallel Multi-GPU Application to Julia: a 3-D Nonlinear Multi-Physics Flow Solver. JuliaCon Conference, Baltimore, USA.][JuliaCon19]
+
 
 ### Contact
 Ludovic Räss (ludovic.rass@gmail.com)
+
+[JuliaCon20a]: https://www.youtube.com/watch?v=vPsfZUqI4_0
+[JuliaCon20b]: https://www.youtube.com/watch?v=1t1AKnnGRqA
+[JuliaCon19]: https://www.youtube.com/watch?v=b90qqbYJ58Q
+[Julia]: https://julialang.org
+[Base.Threads]: https://docs.julialang.org/en/v1/base/multi-threading/
+[JULIA_NUM_THREADS]:https://docs.julialang.org/en/v1.0.0/manual/environment-variables/#JULIA_NUM_THREADS-1
+[CUDA.jl]: https://github.com/JuliaGPU/CUDA.jl
+[Julia REPL]: https://docs.julialang.org/en/v1/stdlib/REPL/
+[JuliaGPU]: https://juliagpu.org
