@@ -29,7 +29,7 @@ For an initial Gaussian distribution of ice and a circular and centred source/si
 
 ![heat diffusion 2D](/docs/sia_2D_ss.png)
 
-These two examples will enable to address the technical objectives of this course.
+#### These two examples will enable to address the technical objectives of this course.
 
 We will use (1) as playground to address:
 - vectorised plain Julia implementation _CPU_ (idem as python, Matlab, Octave)
@@ -46,12 +46,13 @@ We will use (2) as playground to address:
 
 ## Pre-requisite
 _... work in progress ..._
+
 The hands-on format prioritises the _learning-by-doing_ thus not much preliminary knowledge is required. Basic programming skills won't hurt though. The course will build upon the use of the [Julia] programming language. 
 
 #### Performance metric to compare the various code implementations
-Majority of stencil based codes as in this course are memory bounded, meaning the limiting factor in performance is the rate at which memory is transferred from and back between the memory and the arithmetic units.
+Majority of stencil based codes as in this course are memory bounded, meaning the limiting factor in performance is the rate at which memory is transferred from and back between the memory and the arithmetic units. The maximal rate at which the memory transfers occur is the memory copy rate, in the order of 50 GB/s for CPUs and about 1 TB/s for modern GPUs. The effective memory throughput metric (T_eff) measures how good an iterative stencil-based algorithm performs in terms of memory throughput, to be compared to the memory copy rate. The T_eff formula reads: `T_eff = (nIO/1e9*nxy*PRECIS)/(time_s/nt)`, where `nIO` is the number of read/write operations (2 for an update rule), `nxy` is the numerical grid resolution, `PRECIS` is the arithmetic precision (8 or 4 bytes per number), `time_s` is the execution time in second to perform `nt` iterations \[[1][JuliaCon20a]].
 
-#### Technical side
+#### Programming in Julia
 On the CPU, multi-threading is made accessible via [Base.Threads] and the environment variable [JULIA_NUM_THREADS] can be used to define the number of cores to use on the CPU, e.g. `export JULIA_NUM_THREADS=2` to enable 2 threads (2 CPU cores). The [CUDA.jl] module permits to launch compute kernels on Nvidia GPUs within Julia. [JuliaGPU] provides further reading and introductory material about GPU ecosystem within [Julia].
 
 ## Material
@@ -59,6 +60,8 @@ _... work in progress ..._
 
 ## Get started
 _... work in progress ..._
+
+Clone this repo (or download it otherwise) to run the example scripts and access the scripts to be completed during the course.
 
 
 ## Further reading
