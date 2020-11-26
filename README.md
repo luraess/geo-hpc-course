@@ -17,7 +17,7 @@ qy     	= -λ*∂🔥/∂y
 ```
 For an initial Gaussian distribution, the heat diffusion code produces following output:
 
-![heat diffusion 2D](/docs/heat_2D_gif.gif)
+![heat diffusion 2D](/docs/heat_2D.gif)
 
 2. The non-linear diffusion of ice topography (simplified shallow-ice):
 ```julia
