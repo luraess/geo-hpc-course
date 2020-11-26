@@ -9,18 +9,20 @@ The goal of this crash course is to offer an interactive and tutorial-like hands
 ## Objectives
 We will design and implement a numerical algorithm that resolves (non-linear) diffusion in 2D for two applications:
 
-1. the diffusion of heat
+1. The diffusion of heat:
 ```julia
 ∂🔥/∂t	= 1/ρCp*(-∂qx/∂x -∂qx/∂x)
 qx     	= -λ*∂🔥/∂x
 qy     	= -λ*∂🔥/∂y
 ```
-2. the non-linear diffusion of ice topography (shallow-ice)
+
+2. The non-linear diffusion of ice topography (simplified shallow-ice):
 ```julia
 ∂❄/∂t	= -∂qx/∂x -∂qx/∂x + b
 qx     	= -❄^n*∂❄/∂x
 qy     	= -❄^n*∂❄/∂y
 ```
+
 These two examples will enable to address the technical objectives of this course.
 
 We will use (1) as playground to address:
