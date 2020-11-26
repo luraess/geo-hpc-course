@@ -58,10 +58,21 @@ On the CPU, multi-threading is made accessible via [Base.Threads] and the enviro
 ## Material
 _... work in progress ..._
 
+The course material contains some ready-to-run example scripts and some _backbone_ draft scripts that we will complete together:
+
+#### example scripts
+The example scripts provided for demonstration purpose an be accessed in [/examples/](/examples/). The folder contains:
+- `heat_1D.jl`
+- ...
+
+#### draft scripts
+The draft scripts provided as basis to develop your own bits are accessible in [/scripts/](/scripts/). The folder contains:
+- ...
+
 ## Get started
 _... work in progress ..._
 
-Clone this repo (or download it otherwise) to run the example scripts and access the scripts to be completed during the course.
+Clone this repo (or download it otherwise) to run the example scripts and access the draft scripts to be completed during the course.
 
 
 ## Further reading
