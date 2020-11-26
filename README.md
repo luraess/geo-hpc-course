@@ -7,7 +7,7 @@ This crash course aims at providing an interactive and applied approach in an ha
 The goal of this crash course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable.
 
 ## Objectives
-We will design and implement a numerical algorithm that resolves (non-linear) diffusion in 2D for two applications:
+We will design and implement an iterative numerical algorithm that resolves (non-linear) diffusion in 2D for two applications:
 
 1. The diffusion of heat:
 ```julia
@@ -15,6 +15,9 @@ We will design and implement a numerical algorithm that resolves (non-linear) di
 qx     	= -λ*∂🔥/∂x
 qy     	= -λ*∂🔥/∂y
 ```
+For an initial Gaussian distribution, the heat diffusion code produces following output:
+
+![heat diffusion 2D](/docs/heat_2D_gif.gif)
 
 2. The non-linear diffusion of ice topography (simplified shallow-ice):
 ```julia
@@ -22,6 +25,9 @@ qy     	= -λ*∂🔥/∂y
 qx     	= -❄^n*∂❄/∂x
 qy     	= -❄^n*∂❄/∂y
 ```
+For an initial Gaussian distribution of ice and a circular and centred source/sink term, the simplified shallow-ice code produces following output:
+
+![heat diffusion 2D](/docs/sia_2D_ss.png)
 
 These two examples will enable to address the technical objectives of this course.
 
@@ -38,12 +44,6 @@ We will use (2) as playground to address:
 - transient, steady-state solutions
 - explicit vs implicit solutions
 
-
-
-
-
-
-
-
+## Pre-requisites
 
 
