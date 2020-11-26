@@ -44,6 +44,19 @@ We will use (2) as playground to address:
 - transient, steady-state solutions
 - explicit vs implicit solutions
 
-## Pre-requisites
+## Pre-requisite
+_... work in progress ..._
+- 
+
+## Material
+_... work in progress ..._
+
+## Get started
+_... work in progress ..._
 
 
+## Further reading
+_... work in progress ..._
+
+### Contact
+Ludovic Räss (ludovic.rass@gmail.com)
