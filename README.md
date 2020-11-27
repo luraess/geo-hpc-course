@@ -154,9 +154,6 @@ $ sudo dnf install google-noto-emoji-color-fonts.noarch
 \[3\] [Räss, L., Omlin, S., & Podladchikov, Y. Y. (2019). Porting a Massively Parallel Multi-GPU Application to Julia: a 3-D Nonlinear Multi-Physics Flow Solver. JuliaCon Conference, Baltimore, USA.][JuliaCon19]
 
 
-### Contact
-Ludovic Räss (ludovic.rass@gmail.com)
-
 [JuliaCon20a]: https://www.youtube.com/watch?v=vPsfZUqI4_0
 [JuliaCon20b]: https://www.youtube.com/watch?v=1t1AKnnGRqA
 [JuliaCon19]: https://www.youtube.com/watch?v=b90qqbYJ58Q
