@@ -1,10 +1,22 @@
 # geo-hpc-course
 Parallel CPU and GPU high-performance computing - crash course
 
+
+## Content
+* [Description](#description)
+* [Objectives](#objectives)
+* [Pre-requisite](#pre-requisite)
+* [Material](#material)
+* [Getting started](#getting-started)
+* [Course outline](#course-outline)
+* [Further reading](#further-reading)
+
+
 ## Description
 This crash course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This crash course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
 
 The goal of this crash course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable \[[1][JuliaCon20a], [2][JuliaCon20b], [3][JuliaCon19]\].
+
 
 ## Objectives
 We will design and implement an iterative numerical algorithm that resolves (non-linear) diffusion in 2D for two applications:
@@ -44,9 +56,8 @@ We will use (2) as playground to address:
 - transient, steady-state solutions
 - explicit vs implicit solutions
 
-## Pre-requisite
-_... work in progress ..._
 
+## Pre-requisite
 The hands-on format prioritises the _learning-by-doing_ thus not much preliminary knowledge is required. Basic programming skills won't hurt though. The course will build upon the use of the [Julia] programming language. 
 
 #### Performance metric to compare the various code implementations
@@ -55,31 +66,27 @@ Majority of stencil based codes as in this course are memory bounded, meaning th
 #### Programming in Julia
 On the CPU, multi-threading is made accessible via [Base.Threads] and the environment variable [JULIA_NUM_THREADS] can be used to define the number of cores to use on the CPU, e.g. `export JULIA_NUM_THREADS=2` to enable 2 threads (2 CPU cores). The [CUDA.jl] module permits to launch compute kernels on Nvidia GPUs within Julia. [JuliaGPU] provides further reading and introductory material about GPU ecosystem within [Julia].
 
-## Material
-_... work in progress ..._
 
-The course material contains some ready-to-run example scripts and some _backbone_ draft scripts that we will complete together:
+## Material
+The course material contains some ready-to-run example scripts, _tmp_ scripts that we will complete together and the solution scripts for the _tmp_ scripts.
 
 #### example scripts
-The example scripts provided for demonstration purpose an be accessed in [/examples/](/examples/). The folder contains:
-- `heat_1D.jl`
-- ...
+The active working directory during the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts we will work on.
 
-#### tmp scripts
-The draft scripts provided as basis to develop your own bits are accessible in [/scripts/](/scripts/). The folder contains:
-- ...
+#### example scripts
+All _tmp_ scripts have the corresponding solution scripts located in [/solutions/](/solutions/)
+
 
 ## Getting started
 _... work in progress ..._
 
 Clone this repo (or download it otherwise) to run the example scripts and access the draft scripts to be completed during the course.
 
-
-
 ## Course outline
 During the course, we will go through the following steps:
 
-1. Intro _part 1_
+_part 1_
+1. Intro 1
 2. **TODO** Finalise the 1D heat diffusion code [/scripts/heat_1D_tmp.jl](/scripts/heat_1D_tmp.jl).
 3. See how the diffusion looks like in 2D [/scripts/heat_2D.jl](/scripts/heat_2D.jl).
 4. **TODO** Finalise the 2D loop version of the heat code [/scripts/heat_2D_loop_tmp.jl](/scripts/heat_2D_loop_tmp.jl).
@@ -89,7 +96,8 @@ During the course, we will go through the following steps:
 8. See how steps 5. and 7. can be combined into a single code using ParallelStencil.jl in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
 9. Discussion on CPU vs GPU architectures and performance concerns
 
-10. Intro _part 2_
+ _part 2_
+10. Intro 2
 11. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to see an ice cap evolution over time.
 12. **TODO**
 
