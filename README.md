@@ -1,6 +1,6 @@
 # geo-hpc-course
 Parallel CPU and GPU high-performance computing - crash course
-
+----
 This crash course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This crash course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
 
 The goal of this crash course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable \[[1][JuliaCon20a], [2][JuliaCon20b], [3][JuliaCon19]\].
@@ -76,9 +76,26 @@ All _tmp_ scripts have the corresponding solution scripts located in [/solutions
 
 
 ## Getting started
-_... work in progress ..._
+Clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solution or "cheat-sheets" can be found here [/solutions/](/solutions/).
 
-Clone this repo (or download it otherwise) to run the example scripts and access the draft scripts to be completed during the course.
+There are two ways of executing a Julia script, from the Julia command window known as the [Julia REPL], or from the terminal shell directly.
+
+To run Julia interactively, start Julia typing
+```sh
+julia
+```
+in the shell (or Terminal). Then, in the [Julia REPL] type
+```julia-repl
+include("<my_script>.jl")
+```
+to execute the script. Note that typing `;` in the [Julia REPL] permits you to execute shell commands (like `cd ..`).
+
+For optimal performance (like measuring T_eff), it is more optimal to run Julia as executable from the shell directly, using the optimisation flag `-O3` and disabling bound checking `--check-bounds=no` as following
+```sh
+julia -O3 --check-bounds=no <my_script>.jl
+```
+Note that plotting may fail then.
+
 
 ## Course outline
 During the course, we will go through the following steps:
@@ -92,12 +109,13 @@ _part 1_
 6. See how one can simply use the GPU to perform the 2D heat diffusion calculations [/scripts/heat_2D_gpu.jl](/scripts/heat_2D_gpu.jl).
 7. **TODO** The performance "magic"; update the script [/scripts/heat_2D_gpu_fun_tmp.jl](/scripts/heat_2D_gpu_fun_tmp.jl) based on previous knowledge and step (5.).
 8. See how steps 5. and 7. can be combined into a single code using ParallelStencil.jl in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
-9. Discussion on CPU vs GPU architectures and performance concerns
+9. Discussion on CPU vs GPU architectures and performance concerns (T_eff). Q&A.
 
  _part 2_
 10. Intro 2
-11. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to see an ice cap evolution over time.
-12. **TODO**
+11. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to convert the heat diffusion into an ice cap evolution over time.
+12. **TODO** Modify the the script from (11.) to have an implicit steady-state solution.
+13. Discussion about pseudo-transient solvers, damping and convergence. Q&A.
 
 
 ## Advanced start
