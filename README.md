@@ -65,14 +65,34 @@ The example scripts provided for demonstration purpose an be accessed in [/examp
 - `heat_1D.jl`
 - ...
 
-#### draft scripts
+#### tmp scripts
 The draft scripts provided as basis to develop your own bits are accessible in [/scripts/](/scripts/). The folder contains:
 - ...
 
-## Get started
+## Getting started
 _... work in progress ..._
 
 Clone this repo (or download it otherwise) to run the example scripts and access the draft scripts to be completed during the course.
+
+
+
+## Course outline
+During the course, we will go through the following steps:
+
+1. Intro _part 1_
+2. **TODO** Finalise the 1D heat diffusion code [/scripts/heat_1D_tmp.jl](/scripts/heat_1D_tmp.jl).
+3. See how the diffusion looks like in 2D [/scripts/heat_2D.jl](/scripts/heat_2D.jl).
+4. **TODO** Finalise the 2D loop version of the heat code [/scripts/heat_2D_loop_tmp.jl](/scripts/heat_2D_loop_tmp.jl).
+5. **TODO** Import the flux and 🔥 loop calculations in the heat code using external "kernel"-like compute functions [/scripts/heat_2D_loop_fun_tmp.jl](/scripts/heat_2D_loop_fun_tmp.jl).
+6. See how one can simply use the GPU to perform the 2D heat diffusion calculations [/scripts/heat_2D_gpu.jl](/scripts/heat_2D_gpu.jl).
+7. **TODO** The performance "magic"; update the script [/scripts/heat_2D_gpu_fun_tmp.jl](/scripts/heat_2D_gpu_fun_tmp.jl) based on previous knowledge and step (5.).
+8. See how steps 5. and 7. can be combined into a single code using ParallelStencil.jl in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
+9. Discussion on CPU vs GPU architectures and performance concerns
+
+10. Intro _part 2_
+11. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to see an ice cap evolution over time.
+12. **TODO**
+
 
 #### Steps already done on the GPU server you are running on (CentOS 8 linux)
 
