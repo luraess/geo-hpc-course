@@ -1,21 +1,19 @@
 # geo-hpc-course
 Parallel CPU and GPU high-performance computing - crash course
 
+This crash course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This crash course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
+
+The goal of this crash course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable \[[1][JuliaCon20a], [2][JuliaCon20b], [3][JuliaCon19]\].
+
 
 ## Content
-* [Description](#description)
 * [Objectives](#objectives)
 * [Pre-requisite](#pre-requisite)
 * [Material](#material)
 * [Getting started](#getting-started)
 * [Course outline](#course-outline)
+* [Advanced start](#advanced-start)
 * [Further reading](#further-reading)
-
-
-## Description
-This crash course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This crash course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
-
-The goal of this crash course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable \[[1][JuliaCon20a], [2][JuliaCon20b], [3][JuliaCon19]\].
 
 
 ## Objectives
@@ -102,7 +100,8 @@ _part 1_
 12. **TODO**
 
 
-#### Steps already done on the GPU server you are running on (CentOS 8 linux)
+## Advanced start
+Steps already done on the GPU server you are running on (CentOS 8 linux)
 
 Starting in the shell:
 ```sh
