@@ -77,7 +77,9 @@ All _tmp_ scripts have the corresponding solution scripts located in [/solutions
 
 
 ## Getting started
-Clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solution or "cheat-sheets" can be found here [/solutions/](/solutions/).
+Follow the instructions provided on the course private channel. 
+
+In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solution or "cheat-sheets" can be found here [/solutions/](/solutions/).
 
 There are two ways of executing a Julia script, from the Julia command window known as the [Julia REPL], or from the terminal shell directly.
 
@@ -101,8 +103,7 @@ Note that plotting may fail then.
 ## Course outline
 During the course, we will go through the following steps:
 
-_part 1_
-1. Intro 1
+1. Intro 1 _part 1_
 2. **TODO** Finalise the 1D heat diffusion code [/scripts/heat_1D_tmp.jl](/scripts/heat_1D_tmp.jl).
 3. See how the diffusion looks like in 2D [/scripts/heat_2D.jl](/scripts/heat_2D.jl).
 4. **TODO** Finalise the 2D loop version of the heat code [/scripts/heat_2D_loop_tmp.jl](/scripts/heat_2D_loop_tmp.jl).
@@ -111,9 +112,7 @@ _part 1_
 7. **TODO** The performance "magic"; update the script [/scripts/heat_2D_gpu_fun_tmp.jl](/scripts/heat_2D_gpu_fun_tmp.jl) based on previous knowledge and step (5.).
 8. See how steps 5. and 7. can be combined into a single code using ParallelStencil.jl in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
 9. Discussion on CPU vs GPU architectures and performance concerns (T_eff). Q&A.
-
- _part 2_
-10. Intro 2
+10. Intro  _part 2_
 11. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to convert the heat diffusion into an ice cap evolution over time.
 12. **TODO** Modify the the script from (11.) to have an implicit steady-state solution.
 13. Discussion about pseudo-transient solvers, damping and convergence. Q&A.
