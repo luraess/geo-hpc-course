@@ -1,4 +1,5 @@
 using Plots, Printf
+pyplot()
 viz = true
 
 @views function heat_1D()
