@@ -1,10 +1,9 @@
 # geo-hpc-course
 
-Parallel CPU and GPU high-performance computing - crash course
-----
-This crash course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This crash course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
+#### Parallel CPU and GPU high-performance computing course
+This short course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This short course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
 
-The goal of this crash course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable \[[1][JuliaCon20a], [2][JuliaCon20b], [3][JuliaCon19]\].
+The goal of this short course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable \[[1][JuliaCon20a], [2][JuliaCon20b], [3][JuliaCon19]\].
 
 
 ## Content
