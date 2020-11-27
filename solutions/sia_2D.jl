@@ -14,13 +14,13 @@ viz = true
 	nout = 100
 	∂x   = lx/nx
 	∂y   = ly/ny
-	xc	 = LinRange(∂x/2, lx-∂x/2, nx)
-	yc	 = LinRange(∂y/2, ly-∂y/2, ny)
-	❄	 = zeros(nx  ,ny  )
+	xc   = LinRange(∂x/2, lx-∂x/2, nx)
+	yc   = LinRange(∂y/2, ly-∂y/2, ny)
+	❄    = zeros(nx  ,ny  )
 	qx   = zeros(nx+1,ny  )
 	qy   = zeros(nx  ,ny+1)
 	b    = 0.5*ones(nx  ,ny  )
-	❄	 = exp.(.-(xc.-lx./2.0).^2 .-(yc.-ly./2.0)'.^2)
+	❄    = exp.(.-(xc.-lx./2.0).^2 .-(yc.-ly./2.0)'.^2)
 	rad  = (xc.-lx./2.0).^2 .+(yc.-ly./2.0)'.^2; b[rad.>lx/4] .= -0.5
 	# action
 	t0   = Base.time()
@@ -28,7 +28,7 @@ viz = true
 		qx[2:end-1,:] .= .-0.5.*(❄[1:end-1,:].+❄[2:end,:]).^n .*diff(❄, dims=1)./∂x
 		qy[:,2:end-1] .= .-0.5.*(❄[:,1:end-1].+❄[:,2:end]).^n .*diff(❄, dims=2)./∂y
 		∂t             = min(∂x^2,∂y^2)/maximum(❄)^n/4.1/4.0
-		❄  		  	  .= max.(0.0, ❄ .+ ∂t.*(.-diff(qx, dims=1)./∂x .-diff(qy, dims=2)./∂y .+ b))
+		❄             .= max.(0.0, ❄ .+ ∂t.*(.-diff(qx, dims=1)./∂x .-diff(qy, dims=2)./∂y .+ b))
 		if mod(it,nout)==0 && viz 
 			p1 = heatmap(xc, yc, ❄', xlabel="lx", ylabel="ly", title="shallow ice, it=$it", aspect_ratio=1, xlims=(xc[1], xc[end]), ylims=(yc[1], yc[end]), c=:viridis)
 			p2 = plot(xc, ❄[:,Int(round(ny/2))], xlabel="lx", ylabel="height", xlims=(xc[1], xc[end]), ylims=(0., 1.), legend=false)

@@ -16,16 +16,16 @@ viz = true
 	ε    = 1e-8
 	∂x   = lx/nx
 	∂y   = ly/ny
-	xc	 = LinRange(∂x/2, lx-∂x/2, nx)
-	yc	 = LinRange(∂y/2, ly-∂y/2, ny)
-	❄	 = zeros(nx  ,ny  )
+	xc   = LinRange(∂x/2, lx-∂x/2, nx)
+	yc   = LinRange(∂y/2, ly-∂y/2, ny)
+	❄    = zeros(nx  ,ny  )
 	qx   = zeros(nx+1,ny  )
 	qy   = zeros(nx  ,ny+1)
 	∂τ   = zeros(nx  ,ny  )
 	Res❄ = zeros(nx  ,ny  )
 	Err❄ = zeros(nx  ,ny  )
 	b    = 0.5*ones(nx  ,ny  )
-	❄	 = exp.(.-(xc.-lx./2.0).^2 .-(yc.-ly./2.0)'.^2)
+	❄    = exp.(.-(xc.-lx./2.0).^2 .-(yc.-ly./2.0)'.^2)
 	rad  = (xc.-lx./2.0).^2 .+(yc.-ly./2.0)'.^2; b[rad.>lx/4] .= -0.5
 	# action
 	t0   = Base.time()
@@ -35,7 +35,7 @@ viz = true
 		qy[:,2:end-1] .= .-0.5.*(❄[:,1:end-1].+❄[:,2:end]).^n .*diff(❄, dims=2)./∂y
 		∂τ            .= min(∂x^2,∂y^2)./(1.0.+❄.^n)./4.1./4.0
 		Res❄          .= (.-diff(qx, dims=1)./∂x .-diff(qy, dims=2)./∂y .+ b) .+ γ.*Res❄
-		❄  		  	  .= max.(0.0, ❄ .+ ∂τ.*Res❄)
+		❄             .= max.(0.0, ❄ .+ ∂τ.*Res❄)
 		Err❄ .-= ❄
 		if mod(iτ,nout)==0 && viz 
 			p1 = heatmap(xc, yc, ❄', xlabel="lx", ylabel="ly", title="shallow ice, iτ=$iτ", aspect_ratio=1, xlims=(xc[1], xc[end]), ylims=(yc[1], yc[end]), c=:viridis)
