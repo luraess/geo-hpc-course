@@ -74,6 +74,30 @@ _... work in progress ..._
 
 Clone this repo (or download it otherwise) to run the example scripts and access the draft scripts to be completed during the course.
 
+#### Steps already done on the GPU server you are running on (CentOS 8 linux)
+
+Starting in the shell:
+```sh
+wget https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-linux-x86_64.tar.gz
+tar -xzf julia-1.5.3-linux-x86_64.tar.gz
+vim ~/.bashrc # Add the line: PATH=~/julia-1.5.3/bin/:$PATH
+export JULIA_CUDA_USE_BINARYBUILDER=false
+julia
+```
+Then in Julia:
+```julia-repl
+julia> ]
+(@v1.5) pkg> add Plots
+(@v1.5) pkg> add PyPlot
+(@v1.5) pkg> add CUDA
+julia> using Plots
+julia> using CUDA 
+```
+_Note: ParallelStencil.jl is about to be publicly released and will then be listed here as well._
+_Note: [emoji] keyboard can be added to CentOS as following:_
+```sh
+sudo dnf install google-noto-emoji-color-fonts.noarch
+```
 
 ## Further reading
 \[1\] [Omlin, S., Räss, L., Kwasniewski, G., Malvoisin, B., & Podladchikov, Y. Y. (2020). Solving Nonlinear Multi-Physics on GPU Supercomputers with Julia. JuliaCon Conference, virtual.][JuliaCon20a]
@@ -95,3 +119,4 @@ Ludovic Räss (ludovic.rass@gmail.com)
 [CUDA.jl]: https://github.com/JuliaGPU/CUDA.jl
 [Julia REPL]: https://docs.julialang.org/en/v1/stdlib/REPL/
 [JuliaGPU]: https://juliagpu.org
+[emoji]: https://opensource.com/article/19/10/how-type-emoji-linux
