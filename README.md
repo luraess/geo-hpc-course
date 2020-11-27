@@ -94,6 +94,7 @@ julia> using Plots
 julia> using CUDA 
 ```
 _Note: ParallelStencil.jl is about to be publicly released and will then be listed here as well._
+
 _Note: [emoji] keyboard can be added to CentOS as following:_
 ```sh
 sudo dnf install google-noto-emoji-color-fonts.noarch
