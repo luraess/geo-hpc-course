@@ -77,7 +77,7 @@ All _tmp_ scripts have the corresponding solution scripts located in [/solutions
 
 
 ## Getting started
-Follow the instructions provided on the course private channel. 
+If it applies, follow the instructions provided on the course's private channel. 
 
 In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solution or "cheat-sheets" can be found here [/solutions/](/solutions/).
 
