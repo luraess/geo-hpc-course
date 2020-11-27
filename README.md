@@ -79,25 +79,26 @@ All _tmp_ scripts have the corresponding solution scripts located in [/solutions
 ## Getting started
 If it applies, follow the instructions provided on the course's private channel. 
 
-In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solution or "cheat-sheets" can be found here [/solutions/](/solutions/).
+In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solution or "cheat-sheets" can be found in the [/solutions/](/solutions/) folder. The examples rely on 3 main Julia modules, `Plots.jl`, `PyPlot.jl` and `CUDA.jl`. The xpu example requires `ParallelStencil.jl` to be soon released publicly.
 
 There are two ways of executing a Julia script, from the Julia command window known as the [Julia REPL], or from the terminal shell directly.
 
-To run Julia interactively, start Julia typing
+To run Julia interactively, start Julia from the shell (or Terminal). Go to the `geo-hpc-course` folder. Then start Julia appending the `--project` flag to gain access to the required modules:
 ```sh
-$ julia
+$ cd <path-to>/geo-hpc-course/
+$ julia --project
 ```
-in the shell (or Terminal). Then, in the [Julia REPL] type
+Then, in the [Julia REPL], you can execute the script as following:
 ```julia-repl
 julia> include("<my_script>.jl")
 ```
-to execute the script. Note that typing `;` in the [Julia REPL] permits you to execute shell commands (like `cd ..`).
+Note that typing `;` in the [Julia REPL] permits you to execute shell commands (like `cd ..`).
 
-For optimal performance (like measuring T_eff), it is more optimal to run Julia as executable from the shell directly, using the optimisation flag `-O3` and disabling bound checking `--check-bounds=no` as following
+For optimal performance (like measuring T_eff), it is more optimal to run Julia as executable from the shell directly, using the optimisation flag `-O3` and disabling bound checking `--check-bounds=no` as following:
 ```sh
-$ julia -O3 --check-bounds=no <my_script>.jl
+$ julia --project -O3 --check-bounds=no <my_script>.jl
 ```
-Note that plotting may fail then.
+Note that interactive plotting may fail then.
 
 
 ## Course outline
@@ -127,14 +128,15 @@ $ wget https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-linux-x8
 $ tar -xzf julia-1.5.3-linux-x86_64.tar.gz
 $ vim ~/.bashrc # Add the line: PATH=~/julia-1.5.3/bin/:$PATH
 $ export JULIA_CUDA_USE_BINARYBUILDER=false
-$ julia
+$ cd <path-to>/geo-hpc-course/
+$ julia --project
 ```
 Then in Julia:
 ```julia-repl
 julia> ]
-(@v1.5) pkg> add Plots
-(@v1.5) pkg> add PyPlot
-(@v1.5) pkg> add CUDA
+(geo-hpc-course) pkg> add Plots
+(geo-hpc-course) pkg> add PyPlot
+(geo-hpc-course) pkg> add CUDA
 julia> using Plots
 julia> using CUDA 
 ```
