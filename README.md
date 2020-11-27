@@ -1,4 +1,5 @@
 # geo-hpc-course
+
 Parallel CPU and GPU high-performance computing - crash course
 ----
 This crash course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This crash course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
@@ -82,17 +83,17 @@ There are two ways of executing a Julia script, from the Julia command window kn
 
 To run Julia interactively, start Julia typing
 ```sh
-julia
+$ julia
 ```
 in the shell (or Terminal). Then, in the [Julia REPL] type
 ```julia-repl
-include("<my_script>.jl")
+julia> include("<my_script>.jl")
 ```
 to execute the script. Note that typing `;` in the [Julia REPL] permits you to execute shell commands (like `cd ..`).
 
 For optimal performance (like measuring T_eff), it is more optimal to run Julia as executable from the shell directly, using the optimisation flag `-O3` and disabling bound checking `--check-bounds=no` as following
 ```sh
-julia -O3 --check-bounds=no <my_script>.jl
+$ julia -O3 --check-bounds=no <my_script>.jl
 ```
 Note that plotting may fail then.
 
@@ -123,11 +124,11 @@ Steps already done on the GPU server you are running on (CentOS 8 linux)
 
 Starting in the shell:
 ```sh
-wget https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-linux-x86_64.tar.gz
-tar -xzf julia-1.5.3-linux-x86_64.tar.gz
-vim ~/.bashrc # Add the line: PATH=~/julia-1.5.3/bin/:$PATH
-export JULIA_CUDA_USE_BINARYBUILDER=false
-julia
+$ wget https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-linux-x86_64.tar.gz
+$ tar -xzf julia-1.5.3-linux-x86_64.tar.gz
+$ vim ~/.bashrc # Add the line: PATH=~/julia-1.5.3/bin/:$PATH
+$ export JULIA_CUDA_USE_BINARYBUILDER=false
+$ julia
 ```
 Then in Julia:
 ```julia-repl
@@ -142,7 +143,7 @@ _Note: ParallelStencil.jl is about to be publicly released and will then be list
 
 _Note: [emoji] keyboard can be added to CentOS as following:_
 ```sh
-sudo dnf install google-noto-emoji-color-fonts.noarch
+$ sudo dnf install google-noto-emoji-color-fonts.noarch
 ```
 
 ## Further reading
