@@ -104,7 +104,7 @@ Note that interactive plotting may fail then.
 During the course, we will go through the following steps:
 
 1. **Intro _part 1_**
-2. **TODO** Finalise the 1D heat diffusion code [/scripts/heat_1D_tmp.jl](/scripts/heat_1D_tmp.jl).
+2. **TODO** Finalise the 1D heat diffusion code [/scripts/heat_1D_tmp.jl](/scripts/heat_1D_tmp.jl), based on equations 1. from [Objectives].
 3. See how the diffusion looks like in 2D [/scripts/heat_2D.jl](/scripts/heat_2D.jl).
 4. **TODO** Finalise the 2D loop version of the heat code [/scripts/heat_2D_loop_tmp.jl](/scripts/heat_2D_loop_tmp.jl).
 5. **TODO** Import the flux and 🔥 loop calculations in the heat code using external "kernel"-like compute functions [/scripts/heat_2D_loop_fun_tmp.jl](/scripts/heat_2D_loop_fun_tmp.jl).
@@ -130,7 +130,7 @@ $ export JULIA_CUDA_USE_BINARYBUILDER=false
 $ cd <path-to>/geo-hpc-course/
 $ julia --project
 ```
-Then in Julia:
+In case, modulse can be manually added within Julia:
 ```julia-repl
 julia> ]
 (geo-hpc-course) pkg> add Plots
@@ -141,7 +141,7 @@ julia> using CUDA
 ```
 _Note: ParallelStencil.jl is about to be publicly released and will then be listed here as well._
 
-_Note: [emoji] keyboard can be added to CentOS as following:_
+_Note: [emoji] keyboard can be added as following in case symbols do not display on Linux text editors (here Sublime Text on centOS):_
 ```sh
 $ sudo dnf install google-noto-emoji-color-fonts.noarch
 ```
