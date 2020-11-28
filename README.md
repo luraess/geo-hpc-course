@@ -66,12 +66,12 @@ On the CPU, multi-threading is made accessible via [Base.Threads] and the enviro
 
 
 ## Material
-The course material contains some ready-to-run example scripts, _tmp_ scripts that we will complete together and the solution scripts for the _tmp_ scripts.
+The course material contains some ready-to-run _example_ scripts, draft _tmp_ scripts to be complete as tasks during the course and their corresponding _solution_ scripts.
 
 #### example scripts
-The active working directory during the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts we will work on.
+The active working directory for the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts to be worked on.
 
-#### example scripts
+#### solution scripts
 All _tmp_ scripts have the corresponding solution scripts located in [/solutions/](/solutions/)
 
 
