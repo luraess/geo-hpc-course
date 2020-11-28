@@ -9,8 +9,8 @@ viz = true
 	n    = 3
 	nt   = 5000
 	# numerics
-	nx   = 100
-	ny   = 101
+	nx   = 127
+	ny   = 127
 	nout = 100
 	∂x   = lx/nx
 	∂y   = ly/ny

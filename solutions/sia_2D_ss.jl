@@ -9,8 +9,8 @@ viz = true
 	n    = 3
 	nτ   = 10000
 	# numerics
-	nx   = 100
-	ny   = 101
+	nx   = 127
+	ny   = 127
 	nout = 100
 	γ    = 0.96
 	ε    = 1e-8

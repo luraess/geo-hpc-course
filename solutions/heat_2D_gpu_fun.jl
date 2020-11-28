@@ -6,8 +6,8 @@ function compute_flux!(qx, qy, 🔥, λ, ∂x, ∂y, nx, ny)
 	ix = (blockIdx().x-1) * blockDim().x + threadIdx().x # thread ID, dimension x
 	iy = (blockIdx().y-1) * blockDim().y + threadIdx().y # thread ID, dimension y
 
-	if (2<ix<=nx && iy<=ny) qx[ix,iy] = -λ*(🔥[ix,iy]-🔥[ix-1,iy])/∂x end
-	if (ix<=nx && 2<iy<=ny) qy[ix,iy] = -λ*(🔥[ix,iy]-🔥[ix,iy-1])/∂y end
+	if (2<=ix<=nx && iy<=ny) qx[ix,iy] = -λ*(🔥[ix,iy]-🔥[ix-1,iy])/∂x end
+	if (ix<=nx && 2<=iy<=ny) qy[ix,iy] = -λ*(🔥[ix,iy]-🔥[ix,iy-1])/∂y end
 	return
 end
 
@@ -52,6 +52,7 @@ end
 		@cuda blocks=cublocks threads=cuthreads update_🔥!(🔥, qx, qy, ∂t, ρCp, ∂x, ∂y, nx, ny)
 		if mod(it,nout)==0 && viz
 			display(heatmap(xc, yc, Array(🔥)', xlabel="lx", ylabel="ly", title="heat diffusion, it=$it", clims=(0.,1.)))
+			# sleep(.01)
 		end
 	end
 	@printf("T_eff = %1.2e GB/s \n", (2/1e9*nx*ny*sizeof(lx))/((Base.time()-t0)/nt))

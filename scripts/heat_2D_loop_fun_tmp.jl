@@ -5,11 +5,11 @@ viz = true
 function compute_flux!(qx, qy, 🔥, λ, ∂x, ∂y, nx, ny)
 	# Threads.@threads for iy=1:ny
 
-	# TODO add qx computation in a loop fashion here
+		# TODO add qx computation in a loop fashion here
 
 	# Threads.@threads for iy=2:ny
 
-	# TODO add qx computation in a loop fashion here
+		# TODO add qx computation in a loop fashion here
 
 	return
 end
@@ -17,7 +17,7 @@ end
 function update_🔥!(🔥, qx, qy, ∂t, ρCp, ∂x, ∂y, nx, ny)
 	# Threads.@threads for iy=1:ny
 
-	# TODO add 🔥 computation in a loop fashion here
+		# TODO add 🔥 computation in a loop fashion here
 	
 	return
 end
@@ -31,8 +31,8 @@ end
 	ρCp  = 1.0
 	nt   = 200
 	# numerics
-	nx   = 100
-	ny   = 101
+	nx   = 127
+	ny   = 127
 	nout = 10
 	∂x   = lx/nx
 	∂y   = ly/ny
@@ -50,6 +50,7 @@ end
 		update_🔥!(🔥, qx, qy, ∂t, ρCp, ∂x, ∂y, nx, ny)
 		if mod(it,nout)==0 && viz
 			display(heatmap(xc, yc, 🔥', xlabel="lx", ylabel="ly", title="heat diffusion, it=$it", clims=(0.,1.)))
+			# sleep(.01)
 		end
 	end
 	@printf("T_eff = %1.2e GB/s \n", (2/1e9*nx*ny*sizeof(lx))/((Base.time()-t0)/nt))

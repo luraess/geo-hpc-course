@@ -9,8 +9,8 @@ viz = true
 	n    = 3
 	nt   = 5000
 	# numerics
-	nx   = 100
-	ny   = 101
+	nx   = 127
+	ny   = 127
 	nout = 100
 	∂x   = lx/nx
 	∂y   = ly/ny
@@ -25,7 +25,7 @@ viz = true
 	# action
 	t0   = Base.time()
 	for it = 1:nt
-		# TODO add fluy calculations here
+		# TODO add flux calculations here
 		∂t             = min(∂x^2,∂y^2)/maximum(❄)^n/4.1/4.0
 		❄             .= max.(0.0, # TODO add ❄ updated here )
 		if mod(it,nout)==0 && viz

@@ -51,6 +51,7 @@ end
 		@cuda blocks=cublocks threads=cuthreads update_🔥!(🔥, qx, qy, ∂t, ρCp, ∂x, ∂y, nx, ny)
 		if mod(it,nout)==0 && viz
 			display(heatmap(xc, yc, Array(🔥)', xlabel="lx", ylabel="ly", title="heat diffusion, it=$it", clims=(0.,1.)))
+			# sleep(.01)
 		end
 	end
 	@printf("T_eff = %1.2e GB/s \n", (2/1e9*nx*ny*sizeof(lx))/((Base.time()-t0)/nt))

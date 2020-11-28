@@ -9,7 +9,7 @@ viz = true
 	ρCp = 1.0
 	nt  = 200
 	# numerics
-	nx  = 100
+	nx  = 127
 	∂x  = lx/nx
 	xc  = LinRange(∂x/2, lx-∂x/2, nx)
 	🔥  = zeros(nx  )
