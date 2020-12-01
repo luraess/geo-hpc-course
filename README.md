@@ -133,9 +133,7 @@ $ julia --project
 In case, modulse can be manually added within Julia:
 ```julia-repl
 julia> ]
-(geo-hpc-course) pkg> add Plots
-(geo-hpc-course) pkg> add PyPlot
-(geo-hpc-course) pkg> add CUDA
+(geo-hpc-course) pkg> instantiate
 julia> using Plots
 julia> using CUDA 
 ```
