@@ -442,14 +442,6 @@ git-tree-sha1 = "1b556ad51dceefdbf30e86ffa8f528b73c7df2bb"
 uuid = "2f80f16e-611a-54ab-bc61-aa92de5b98fc"
 version = "8.42.0+4"
 
-[[ParallelStencil]]
-deps = ["CUDA", "MacroTools"]
-git-tree-sha1 = "89e3cf11a2d9a592c27f1c778b2ca49089b64766"
-repo-rev = "master"
-repo-url = "git@github.com:samo-lin/ParallelStencil.jl.git"
-uuid = "94395366-693c-11ea-3b26-d9b7aac5d958"
-version = "0.3.0"
-
 [[Parsers]]
 deps = ["Dates"]
 git-tree-sha1 = "b417be52e8be24e916e34b3d70ec2da7bdf56a68"
