@@ -130,7 +130,7 @@ $ export JULIA_CUDA_USE_BINARYBUILDER=false
 $ cd <path-to>/geo-hpc-course/
 $ julia --project
 ```
-In case, modulse can be manually added within Julia:
+In case, modules can be manually added within Julia:
 ```julia-repl
 julia> ]
 (geo-hpc-course) pkg> instantiate
