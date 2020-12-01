@@ -21,7 +21,7 @@ We will design and implement an iterative numerical algorithm that resolves (non
 
 1. The diffusion of heat:
 ```julia
-∂🔥/∂t	= 1/ρCp*(-∂qx/∂x -∂qx/∂x)
+∂🔥/∂t	= 1/ρCp*(-∂qx/∂x -∂qy/∂y)
 qx     	= -λ*∂🔥/∂x
 qy     	= -λ*∂🔥/∂y
 ```
@@ -31,7 +31,7 @@ For an initial Gaussian distribution, the heat diffusion code produces following
 
 2. The non-linear diffusion of ice topography (simplified shallow-ice):
 ```julia
-∂❄/∂t	= -∂qx/∂x -∂qx/∂x + b
+∂❄/∂t	= -∂qx/∂x -∂qy/∂y + b
 qx     	= -❄^n*∂❄/∂x
 qy     	= -❄^n*∂❄/∂y
 ```
