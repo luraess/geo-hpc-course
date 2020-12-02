@@ -1,6 +1,8 @@
 using Plots, Printf
-pyplot()
+# pyplot()
 viz = true
+ENV["GKSwstype"]="nul"; if isdir("viz2D_out")==false mkdir("viz2D_out") end; loadpath = "./viz2D_out/"; anim = Animation(loadpath,String[])
+println("Animation directory: $(anim.dir)")
 
 @views function sia_2D()
     # physics
@@ -11,7 +13,7 @@ viz = true
     # numerics
     nx    = 127
     ny    = 127
-    nout  = 100
+    nout  = 50
     dmp   = 0.96
     ε     = 1e-8
     dx    = lx/nx
@@ -28,6 +30,7 @@ viz = true
     H     = exp.(.-(xc.-lx./2.0).^2 .-(yc.-ly./2.0)'.^2)
     rad   = (xc.-lx./2.0).^2 .+(yc.-ly./2.0)'.^2; b[rad.>lx/4] .= -0.5
     # action
+    itr=[]; mEr=[]
     t0   = Base.time()
     for iter = 1:niter
         ErrH .= H
@@ -38,14 +41,17 @@ viz = true
         H             .= max.(0.0, H .+ dtau.*ResH)
         ErrH .-= H
         if mod(iter,nout)==0 && viz 
-            p1 = heatmap(xc, yc, H', xlabel="lx", ylabel="ly", title="shallow ice, iter=$iter", aspect_ratio=1, xlims=(xc[1], xc[end]), ylims=(yc[1], yc[end]), c=:viridis)
-            p2 = plot(xc, H[:,Int(round(ny/2))], xlabel="lx", ylabel="height", xlims=(xc[1], xc[end]), ylims=(0., 1.), legend=false, framestyle=:box, aspect_ratio=2.5)
-            l = @layout [ a{0.8h} ; b{0.2h} ]
-            display(plot(p1, p2, layout=l ))
+            maxErr = maximum(abs.(ErrH)); @printf("iter=%d, max(err)=%1.2e \n", iter, maxErr); if maxErr<ε global itg=iter; break; end
+            push!(itr, iter); push!(mEr, maxErr)
+            p1 = heatmap(xc, yc, H', xlabel="lx", ylabel="ly", title="shallow ice", aspect_ratio=1, xlims=(xc[1], xc[end]), ylims=(yc[1], yc[end]), c=:viridis)
+            p2 = plot(xc, H[:,Int(round(ny/2))], xlabel="lx", ylabel="height", xlims=(xc[1], xc[end]), ylims=(0., 1.), legend=false, framestyle=:box, aspect_ratio=2.5, linewidth=2)
+            p3 = plot(itr, mEr, xlabel="iters", ylabel="error", ylims=(ε/2., 1e-1), legend=false, framestyle=:box, yaxis=:log, linewidth=2)
+            l = @layout [ a{0.5w} [ b{0.6h} ; c{0.3h} ] ]
+            display(plot(p1, p2, p3, layout = l)); frame(anim)
         end
-        if mod(iter,nout)==0 maxErr=maximum(abs.(ErrH)); @printf("iter=%d, max(err)=%1.2e \n", iter, maxErr); if maxErr<ε global itg=iter; break; end end
     end
     @printf("T_eff = %1.2e GB/s \n", (2/1e9*nx*ny*sizeof(lx))/((Base.time()-t0)/itg))
+    gif(anim, "sia_2D.gif", fps = 5)
     return
 end
 

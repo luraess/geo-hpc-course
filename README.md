@@ -36,9 +36,9 @@ dH/dt	= -dqx/dx -dqy/dy + b
 qx     	= -H^n*dH/dx
 qy     	= -H^n*dH/dy
 ```
-For an initial Gaussian distribution of ice and a circular and centred source/sink term, the simplified shallow-ice code produces following output:
+For an initial Gaussian distribution of ice and a circular and centred source/sink term, the simplified shallow-ice code produces following output while reaching a steady state:
 
-![heat diffusion 2D](/docs/sia_2D_ss.png)
+![heat diffusion 2D](/docs/sia_2D.gif)
 
 #### These two examples will enable to address the technical objectives of this course.
 
