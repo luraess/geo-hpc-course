@@ -13,6 +13,7 @@ The goal of this short course is to offer an interactive and tutorial-like hands
 * [Getting started](#getting-started)
 * [Course outline](#course-outline)
 * [Advanced start](#advanced-start)
+* [Extras](#extras)
 * [Further reading](#further-reading)
 
 
@@ -108,14 +109,18 @@ During the course, we will go through the following steps:
 3. See how the diffusion looks like in 2D [/scripts/heat_2D.jl](/scripts/heat_2D.jl).
 4. **TODO** Finalise the 2D loop version of the heat code [/scripts/heat_2D_loop_tmp.jl](/scripts/heat_2D_loop_tmp.jl).
 5. **TODO** Import the flux and `T` loop calculations in the heat code using external "kernel"-like compute functions [/scripts/heat_2D_loop_fun_tmp.jl](/scripts/heat_2D_loop_fun_tmp.jl).
-6. See how one can simply use the **GPU** to perform the 2D heat diffusion calculations [/scripts/heat_2D_gpu.jl](/scripts/heat_2D_gpu.jl).
-7. **TODO** The performance "magic"; update the script [/scripts/heat_2D_gpu_fun_tmp.jl](/scripts/heat_2D_gpu_fun_tmp.jl) based on previous knowledge and step (5.).
-8. See how steps 5. and 7. can be combined into a single code using `ParallelStencil.jl` in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
-9. Discussion on CPU vs GPU architectures and performance evaluation (T_eff). Q&A.
-10. **Intro  _part 2_**
-11. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to convert the heat diffusion `T` into an ice cap `H` evolution over time.
-12. **TODO** Modify the the script from (11.) to have an implicit solver while reaching a steady-state solution.
-13. Discussion about pseudo-transient solvers, damping and convergence. Q&A.
+6. See how the function-based loop version (5.) can be further extended to checking bounds with `if` statement in the `ix` and `iy` loops, including "loop-fusion" for the flux computations [/scripts/heat_2D_loop_fun_gpustyle.jl](/scripts/heat_2D_loop_fun_gpustyle.jl).
+7. See how one can simply use the **GPU** to perform the 2D heat diffusion calculations [/scripts/heat_2D_gpu.jl](/scripts/heat_2D_gpu.jl).
+8. **TODO** The performance "magic"; update the script [/scripts/heat_2D_gpu_fun_tmp.jl](/scripts/heat_2D_gpu_fun_tmp.jl) based on previous knowledge and step (5.).
+9. See how steps 5. and 7. can be combined into a single code using `ParallelStencil.jl` in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
+10. Discussion on CPU vs GPU architectures and performance evaluation (T_eff). Q&A.
+
+---
+
+11. **Intro  _part 2_**
+12. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to convert the heat diffusion `T` into an ice cap `H` evolution over time.
+13. **TODO** Modify the the script from (11.) to have an implicit solver while reaching a steady-state solution.
+14. Discussion about pseudo-transient solvers, damping and convergence. Q&A.
 
 
 ## Advanced start
@@ -140,6 +145,15 @@ julia> using CUDA
 _Note: `ParallelStencil.jl` is about to be publicly released and will then be listed here as well._
 
 
+## Extras
+[Julia] support UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out of the box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) examplifies these two fun capabilities.
+
+_Note: On Linux machines, [emoji] keyboard may need to be installed in order to display the Unicode emoticons._
+```sh
+$ sudo dnf install google-noto-emoji-color-fonts.noarch
+```
+
+
 ## Further reading
 \[1\] [Omlin, S., Räss, L., Kwasniewski, G., Malvoisin, B., & Podladchikov, Y. Y. (2020). Solving Nonlinear Multi-Physics on GPU Supercomputers with Julia. JuliaCon Conference, virtual.][JuliaCon20a]
 
@@ -155,6 +169,7 @@ _Note: `ParallelStencil.jl` is about to be publicly released and will then be li
 [Base.Threads]: https://docs.julialang.org/en/v1/base/multi-threading/
 [JULIA_NUM_THREADS]:https://docs.julialang.org/en/v1.0.0/manual/environment-variables/#JULIA_NUM_THREADS-1
 [CUDA.jl]: https://github.com/JuliaGPU/CUDA.jl
+[Plots.jl]: https://github.com/JuliaPlots/Plots.jl
 [Julia REPL]: https://docs.julialang.org/en/v1/stdlib/REPL/
 [JuliaGPU]: https://juliagpu.org
 [emoji]: https://opensource.com/article/19/10/how-type-emoji-linux
