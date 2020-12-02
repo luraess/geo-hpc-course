@@ -38,7 +38,7 @@ qy     	= -H^n*dH/dy
 ```
 For an initial Gaussian distribution of ice and a circular and centred source/sink term, the simplified shallow-ice code produces following output while reaching a steady state:
 
-![sia non-linear 2D](/docs/sia_2D.gif)
+![sia non-linear diffusion 2D](/docs/sia_2D.gif)
 
 #### These two examples will enable to address the technical objectives of this course.
 
@@ -148,7 +148,7 @@ _Note: `ParallelStencil.jl` is about to be publicly released and will then be li
 ## Extras
 [Julia] supports UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out-of-the-box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) examplifies these two fun capabilities.
 
-The code [/extras/sia_2D_ss_gif.jl](/extras/sia_2D_ss_gif.jl) uses the out-of-the-box gif-making capabilities to produce the  
+The code [/extras/sia_2D_ss_gif.jl](/extras/sia_2D_ss_gif.jl) uses the out-of-the-box gif-making capabilities to produce the SIA non-linear diffusion gif.
 
 _Note: On Linux machines, [emoji] keyboard may need to be installed in order to display the Unicode emoticons._
 ```sh
