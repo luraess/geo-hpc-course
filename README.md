@@ -139,10 +139,6 @@ julia> using CUDA
 ```
 _Note: `ParallelStencil.jl` is about to be publicly released and will then be listed here as well._
 
-_Note: [emoji] keyboard can be added as following in case symbols do not display on Linux text editors (here Sublime Text on centOS):_
-```sh
-$ sudo dnf install google-noto-emoji-color-fonts.noarch
-```
 
 ## Further reading
 \[1\] [Omlin, S., Räss, L., Kwasniewski, G., Malvoisin, B., & Podladchikov, Y. Y. (2020). Solving Nonlinear Multi-Physics on GPU Supercomputers with Julia. JuliaCon Conference, virtual.][JuliaCon20a]
