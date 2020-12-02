@@ -146,7 +146,7 @@ _Note: `ParallelStencil.jl` is about to be publicly released and will then be li
 
 
 ## Extras
-[Julia] support UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out of the box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) examplifies these two fun capabilities.
+[Julia] supports UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out of the box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) examplifies these two fun capabilities.
 
 _Note: On Linux machines, [emoji] keyboard may need to be installed in order to display the Unicode emoticons._
 ```sh

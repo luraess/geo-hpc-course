@@ -3,9 +3,9 @@ pyplot()
 viz = true
 
 function compute_flux!(qx, qy, T, λ, dx, dy, nx, ny)
-    # Threads.@threads for iy=1:ny
-    for iy=1:ny
-        for ix=1:nx
+    # Threads.@threads for iy=1:ny+1
+    for iy=1:ny+1
+        for ix=1:nx+1
             if (2<=ix<=nx && iy<=ny) qx[ix,iy] = -λ*(T[ix,iy]-T[ix-1,iy])/dx end
             if (ix<=nx && 2<=iy<=ny) qy[ix,iy] = -λ*(T[ix,iy]-T[ix,iy-1])/dy end
         end
@@ -14,9 +14,9 @@ function compute_flux!(qx, qy, T, λ, dx, dy, nx, ny)
 end
 
 function update_T!(T, qx, qy, dt, ρCp, dx, dy, nx, ny)
-    # Threads.@threads for iy=1:ny
-    for iy=1:ny
-        for ix=1:nx
+    # Threads.@threads for iy=1:ny+1
+    for iy=1:ny+1
+        for ix=1:nx+1
             if (ix<=nx && iy<=ny) T[ix,iy] = T[ix,iy] - dt/ρCp*((qx[ix+1,iy]-qx[ix,iy])/dx + (qy[ix,iy+1]-qy[ix,iy])/dy) end
         end
     end
