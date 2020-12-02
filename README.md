@@ -21,9 +21,9 @@ We will design and implement an iterative numerical algorithm that resolves (non
 
 1. The diffusion of heat:
 ```julia
-∂🔥/∂t	= 1/ρCp*(-∂qx/∂x -∂qy/∂y)
-qx     	= -λ*∂🔥/∂x
-qy     	= -λ*∂🔥/∂y
+dT/dt	= 1/ρCp*(-dqx/∂x -dqy/dy)
+qx     	= -λ*dT/dx
+qy     	= -λ*dT/dy
 ```
 For an initial Gaussian distribution, the heat diffusion code produces following output:
 
@@ -31,9 +31,9 @@ For an initial Gaussian distribution, the heat diffusion code produces following
 
 2. The non-linear diffusion of ice topography (simplified shallow-ice):
 ```julia
-∂❄/∂t	= -∂qx/∂x -∂qy/∂y + b
-qx     	= -❄^n*∂❄/∂x
-qy     	= -❄^n*∂❄/∂y
+dH/dt	= -dqx/dx -dqy/dy + b
+qx     	= -H^n*dH/dx
+qy     	= -H^n*dH/dy
 ```
 For an initial Gaussian distribution of ice and a circular and centred source/sink term, the simplified shallow-ice code produces following output:
 
@@ -107,13 +107,13 @@ During the course, we will go through the following steps:
 2. **TODO** Finalise the 1D heat diffusion code [/scripts/heat_1D_tmp.jl](/scripts/heat_1D_tmp.jl), implementing the equations from [Objectives 1.](#objectives)
 3. See how the diffusion looks like in 2D [/scripts/heat_2D.jl](/scripts/heat_2D.jl).
 4. **TODO** Finalise the 2D loop version of the heat code [/scripts/heat_2D_loop_tmp.jl](/scripts/heat_2D_loop_tmp.jl).
-5. **TODO** Import the flux and 🔥 loop calculations in the heat code using external "kernel"-like compute functions [/scripts/heat_2D_loop_fun_tmp.jl](/scripts/heat_2D_loop_fun_tmp.jl).
+5. **TODO** Import the flux and `T` loop calculations in the heat code using external "kernel"-like compute functions [/scripts/heat_2D_loop_fun_tmp.jl](/scripts/heat_2D_loop_fun_tmp.jl).
 6. See how one can simply use the **GPU** to perform the 2D heat diffusion calculations [/scripts/heat_2D_gpu.jl](/scripts/heat_2D_gpu.jl).
 7. **TODO** The performance "magic"; update the script [/scripts/heat_2D_gpu_fun_tmp.jl](/scripts/heat_2D_gpu_fun_tmp.jl) based on previous knowledge and step (5.).
 8. See how steps 5. and 7. can be combined into a single code using `ParallelStencil.jl` in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
 9. Discussion on CPU vs GPU architectures and performance evaluation (T_eff). Q&A.
 10. **Intro  _part 2_**
-11. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to convert the heat diffusion 🔥 into an ice ❄ cap evolution over time.
+11. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to convert the heat diffusion `T` into an ice cap `H` evolution over time.
 12. **TODO** Modify the the script from (11.) to have an implicit solver while reaching a steady-state solution.
 13. Discussion about pseudo-transient solvers, damping and convergence. Q&A.
 
