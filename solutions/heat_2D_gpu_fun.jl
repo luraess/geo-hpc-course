@@ -6,8 +6,8 @@ function compute_flux!(qx, qy, T, λ, dx, dy, nx, ny)
     ix = (blockIdx().x-1) * blockDim().x + threadIdx().x # thread ID, dimension x
     iy = (blockIdx().y-1) * blockDim().y + threadIdx().y # thread ID, dimension y
 
-    if (2<=ix<=nx && iy<=ny) qx[ix,iy] = -λ*(T[ix,iy]-T[ix-1,iy])/dx; end
-    if (ix<=nx && 2<=iy<=ny) qy[ix,iy] = -λ*(T[ix,iy]-T[ix,iy-1])/dy; end
+    if (2<=ix<=nx && iy<=ny)  qx[ix,iy] = -λ*(T[ix,iy]-T[ix-1,iy])/dx  end
+    if (ix<=nx && 2<=iy<=ny)  qy[ix,iy] = -λ*(T[ix,iy]-T[ix,iy-1])/dy  end
     return
 end
 
@@ -15,7 +15,7 @@ function update_T!(T, qx, qy, dt, ρCp, dx, dy, nx, ny)
     ix = (blockIdx().x-1) * blockDim().x + threadIdx().x # thread ID, dimension x
     iy = (blockIdx().y-1) * blockDim().y + threadIdx().y # thread ID, dimension y
 
-    if (ix<=nx && iy<=ny) T[ix,iy] = T[ix,iy] - dt/ρCp*((qx[ix+1,iy]-qx[ix,iy])/dx + (qy[ix,iy+1]-qy[ix,iy])/dy); end
+    if (ix<=nx && iy<=ny)  T[ix,iy] = T[ix,iy] - dt/ρCp*((qx[ix+1,iy]-qx[ix,iy])/dx + (qy[ix,iy+1]-qy[ix,iy])/dy)  end
     return
 end
 
