@@ -48,13 +48,16 @@ end
     t0     = Base.time()
     for it = 1:nt
         @cuda blocks=cublocks threads=cuthreads compute_flux!(qx, qy, T, λ, dx, dy, nx, ny)
+        synchronize()
         @cuda blocks=cublocks threads=cuthreads update_T!(T, qx, qy, dt, ρCp, dx, dy, nx, ny)
+        synchronize()
         if mod(it,nout)==0 && viz
             display(heatmap(xc, yc, Array(T)', xlabel="lx", ylabel="ly", title="heat diffusion, it=$it", clims=(0.,1.)))
             # sleep(.01)
         end
     end
-    @printf("T_eff = %1.2e GB/s \n", (2/1e9*nx*ny*sizeof(lx))/((Base.time()-t0)/nt))
+    time_s = (Base.time()-t0)
+    @printf("Time = %1.4e s, T_eff = %1.2e GB/s \n", time_s, (2/1e9*nx*ny*sizeof(lx))/(time_s/nt))
     return
 end
 
