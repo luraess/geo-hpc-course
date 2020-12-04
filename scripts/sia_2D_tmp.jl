@@ -9,8 +9,8 @@ viz = true
     n    = 3
     nt   = 5000
     # numerics
-    nx   = 127
-    ny   = 127
+    nx   = 128-1
+    ny   = 128-1
     nout = 100
     dx   = lx/nx
     dy   = ly/ny
@@ -34,7 +34,8 @@ viz = true
             display(plot(p1, p2, layout=(2, 1)))
         end
     end
-    @printf("T_eff = %1.2e GB/s \n", (2/1e9*nx*ny*sizeof(lx))/((Base.time()-t0)/nt))
+    time_s = (Base.time()-t0)
+    @printf("Time = %1.4e s, T_eff = %1.2e GB/s \n", time_s, (2/1e9*nx*ny*sizeof(lx))/(time_s/nt))
     return
 end
 

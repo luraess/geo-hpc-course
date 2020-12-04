@@ -9,8 +9,8 @@ viz = true
     n     = 3
     niter = 10000
     # numerics
-    nx    = 127
-    ny    = 127
+    nx    = 128-1
+    ny    = 128-1
     nout  = 100
     dmp   = 0.96
     ε     = 1e-8
@@ -45,7 +45,8 @@ viz = true
         end
         if mod(iter,nout)==0 maxErr=maximum(abs.(ErrH)); @printf("iter=%d, max(err)=%1.2e \n", iter, maxErr); if maxErr<ε global itg=iter; break; end end
     end
-    @printf("T_eff = %1.2e GB/s \n", (2/1e9*nx*ny*sizeof(lx))/((Base.time()-t0)/itg))
+    time_s = (Base.time()-t0)
+    @printf("Time = %1.4e s, T_eff = %1.2e GB/s \n", time_s, (2/1e9*nx*ny*sizeof(lx))/(time_s/itg))
     return
 end
 

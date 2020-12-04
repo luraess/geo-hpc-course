@@ -9,7 +9,7 @@ viz = true
     ρCp = 1.0
     nt  = 200
     # numerics
-    nx  = 127
+    nx  = 128-1
     dx  = lx/nx
     xc  = LinRange(dx/2, lx-dx/2, nx)
     t   = zeros(nx  )
@@ -21,7 +21,8 @@ viz = true
     for it = 1:nt
         # TODO add physics
     end
-    @printf("T_eff = %1.2e GB/s \n", (2/1e9*nx*sizeof(lx))/((Base.time()-t0)/nt))
+    time_s = (Base.time()-t0)
+    @printf("Time = %1.4e s, T_eff = %1.2e GB/s \n", time_s, (2/1e9*nx*ny*sizeof(lx))/(time_s/nt))
     if viz display(plot(xc, T, legend=false, xlabel="lx", ylabel="heat", title="diffusion")) end
     return
 end

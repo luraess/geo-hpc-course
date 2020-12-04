@@ -51,7 +51,8 @@ end
             # sleep(.01)
         end
     end
-    @printf("T_eff = %1.2e GB/s \n", (2/1e9*nx*ny*sizeof(lx))/((Base.time()-t0)/nt))
+    time_s = (Base.time()-t0)
+    @printf("Time = %1.4e s, T_eff = %1.2e GB/s \n", time_s, (2/1e9*nx*ny*sizeof(lx))/(time_s/nt))
     return
 end
 

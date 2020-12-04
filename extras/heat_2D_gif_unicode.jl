@@ -33,7 +33,8 @@ println("Animation directory: $(anim.dir)")
             heatmap(xc, yc, 🔥', xlabel="Lx", ylabel="Ly", title="heat diffusion, it=$it", aspect_ratio=1, xlims=(xc[1], xc[end]), ylims=(yc[1], yc[end]), clims=(0.,1.)); frame(anim)
         end
     end
-    @printf("T_eff = %1.2e GB/s \n", (2/1e9*nx*ny*sizeof(lx))/((Base.time()-t0)/nt))
+    time_s = (Base.time()-t0)
+    @printf("Time = %1.4e s, T_eff = %1.2e GB/s \n", time_s, (2/1e9*nx*ny*sizeof(lx))/(time_s/nt))
     gif(anim, "heat_2D.gif", fps = 15)
     return
 end

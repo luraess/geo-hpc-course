@@ -22,7 +22,8 @@ viz = true
         qx[2:end-1] .= .-λ.*diff(T)./dx
         T           .= T .- dt./ρCp.*diff(qx)./dx
     end
-    @printf("T_eff = %1.2e GB/s \n", (2/1e9*nx*sizeof(lx))/((Base.time()-t0)/nt))
+    time_s = (Base.time()-t0)
+    @printf("Time = %1.4e s, T_eff = %1.2e GB/s \n", time_s, (2/1e9*nx*ny*sizeof(lx))/(time_s/nt))
     if viz display(plot(xc, T, legend=false, xlabel="lx", ylabel="heat", title="diffusion")) end
     return
 end
