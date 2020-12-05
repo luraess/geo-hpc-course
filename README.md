@@ -22,7 +22,7 @@ We will design and implement an iterative numerical algorithm that resolves (non
 
 1. The diffusion of heat:
 ```julia
-dT/dt	= 1/ρCp*(-dqx/∂x -dqy/dy)
+dT/dt	= 1/ρCp*(-dqx/dx -dqy/dy)
 qx     	= -λ*dT/dx
 qy     	= -λ*dT/dy
 ```
