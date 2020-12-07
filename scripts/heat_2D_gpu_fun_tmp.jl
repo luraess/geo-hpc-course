@@ -1,6 +1,6 @@
 using CUDA, Plots, Printf
 pyplot()
-viz = true
+viz = false
 
 function compute_flux!(qx, qy, T, λ, dx, dy, nx, ny)
     ix = (blockIdx().x-1) * blockDim().x + threadIdx().x # thread ID, dimension x

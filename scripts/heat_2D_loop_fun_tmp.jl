@@ -1,6 +1,6 @@
 using Plots, Printf, Statistics
 pyplot()
-viz = true
+viz = false
 
 function compute_flux!(qx, qy, T, λ, dx, dy, nx, ny)
     # Threads.@threads for iy=1:ny
