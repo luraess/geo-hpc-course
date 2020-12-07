@@ -38,7 +38,7 @@ viz = true
         end
     end
     time_s = (Base.time()-t0)
-    @printf("Time = %1.4e s, T_eff = %1.2e GB/s \n", time_s, (2/1e9*nx*ny*sizeof(lx))/(time_s/nt))
+    @printf("Time = %1.4e s, T_eff = %1.2f GB/s \n", time_s, round((2/1e9*nx*ny*sizeof(lx))/(time_s/nt), sigdigits=2))
     return
 end
 

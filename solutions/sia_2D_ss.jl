@@ -46,7 +46,7 @@ viz = true
         if mod(iter,nout)==0 maxErr=maximum(abs.(ErrH)); @printf("iter=%d, max(err)=%1.2e \n", iter, maxErr); if maxErr<ε global itg=iter; break; end end
     end
     time_s = (Base.time()-t0)
-    @printf("Time = %1.4e s, T_eff = %1.2e GB/s \n", time_s, (2/1e9*nx*ny*sizeof(lx))/(time_s/itg))
+    @printf("Time = %1.4e s, T_eff = %1.2f GB/s \n", time_s, round((2/1e9*nx*ny*sizeof(lx))/(time_s/itg), sigdigits=2))
     return
 end
 
