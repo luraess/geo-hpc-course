@@ -146,6 +146,11 @@ julia> using CUDA
 ```
 _Note: `ParallelStencil.jl` is about to be publicly released and will then be listed here as well._
 
+If your GPU system contains more than one GPU, you can add following at the beginning of each `gpu` named code to target a specific device identified by its unique `ID` (default being `0`):
+```julia
+GPU_ID = ID
+CUDA.device!(GPU_ID)
+```
 
 ## Extras
 [Julia] supports UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out-of-the-box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) examplifies these two fun capabilities.
