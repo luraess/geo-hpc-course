@@ -22,7 +22,7 @@ viz = true
         # TODO add physics
     end
     time_s = (Base.time()-t0)
-    @printf("Time = %1.4e s, T_eff = %1.2e GB/s \n", time_s, (2/1e9*nx*ny*sizeof(lx))/(time_s/nt))
+    @printf("Time = %1.4e s, T_eff = %1.2f GB/s \n", time_s, round((2/1e9*nx*ny*sizeof(lx))/(time_s/nt), sigdigits=2))
     if viz display(plot(xc, T, legend=false, xlabel="lx", ylabel="heat", title="diffusion")) end
     return
 end
