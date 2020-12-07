@@ -100,6 +100,8 @@ $ julia --project -O3 --check-bounds=no <my_script>.jl
 ```
 Note that interactive plotting may fail then.
 
+Set the default `viz = false` flag to `true` if you want to display the figure.
+
 
 ## Course outline
 During the course, we will go through the following steps:

@@ -8,7 +8,7 @@ else
 end
 using Plots, Printf, Statistics
 pyplot()
-viz = true
+viz = false
 
 @parallel function compute_flux!(qx::Data.Array, qy::Data.Array, T::Data.Array, λ::Data.Number, dx::Data.Number, dy::Data.Number)
     @inn_x(qx) = -λ*@d_xa(T)/dx
