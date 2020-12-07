@@ -1,6 +1,6 @@
 using Plots, Printf
 pyplot()
-viz = false
+viz = true
 
 @views function heat_2D()
     # physics

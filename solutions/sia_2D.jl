@@ -1,6 +1,6 @@
 using Plots, Printf
 pyplot()
-viz = false
+viz = true
 
 @views function sia_2D()
     # physics
