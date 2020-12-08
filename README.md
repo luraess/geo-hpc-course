@@ -5,6 +5,8 @@ This short course aims at providing an interactive and applied approach in an ha
 
 The goal of this short course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable \[[1][JuliaCon20a], [2][JuliaCon20b], [3][JuliaCon19]\].
 
+The iterative algorithms can be converted into efficient linear and non-linear solvers relying on a second order Richardson type of iterations strategy \[[4][Frankel50]]
+
 
 ## Content
 * [Objectives](#objectives)
@@ -124,6 +126,9 @@ During the course, we will go through the following steps:
 13. **TODO** Modify the the script from (11.) to have an implicit solver while reaching a steady-state solution.
 14. Discussion about pseudo-transient solvers, damping and convergence. Q&A.
 
+---
+
+15. **_part 3_ to come...**
 
 ## Advanced start
 Steps already done on the GPU server you are running on (CentOS 8 linux)
@@ -170,10 +175,13 @@ $ sudo dnf install google-noto-emoji-color-fonts.noarch
 
 \[3\] [Räss, L., Omlin, S., & Podladchikov, Y. Y. (2019). Porting a Massively Parallel Multi-GPU Application to Julia: a 3-D Nonlinear Multi-Physics Flow Solver. JuliaCon Conference, Baltimore, USA.][JuliaCon19]
 
+\[4\] [Frankel, S. P. (1950). Convergence rates of iterative treatments of partial differential equations, Mathe. Tables Other Aids Comput., 4, 65–75.][Frankel50]
+
 
 [JuliaCon20a]: https://www.youtube.com/watch?v=vPsfZUqI4_0
 [JuliaCon20b]: https://www.youtube.com/watch?v=1t1AKnnGRqA
 [JuliaCon19]: https://www.youtube.com/watch?v=b90qqbYJ58Q
+[Frankel50]: /docs/frankel_1950.pdf
 [Julia]: https://julialang.org
 [Base.Threads]: https://docs.julialang.org/en/v1/base/multi-threading/
 [JULIA_NUM_THREADS]:https://docs.julialang.org/en/v1.0.0/manual/environment-variables/#JULIA_NUM_THREADS-1
