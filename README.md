@@ -50,7 +50,7 @@ We will use (1) as playground to address:
 - "kernel"-style loops and multi-threading _multi-core CPU_
 - vectorised plain Julia with GPU backend _GPU_ (idem as abstract GPU functions for e.g. python, Matlab)
 - explicit "kernel"-style _GPU_ (Julia's power: C CUDA low-level handles)
-- using ParallelStencil enabling both _multi-core CPU_ and _GPU_
+- using [ParallelStencil.jl] enabling single/multi-XPU (both _multi-core CPU_ and _GPU_)
 
 We will use (2) as playground to address:
 - explicit time stepping
@@ -81,7 +81,7 @@ All _tmp_ scripts have the corresponding solution scripts located in [/solutions
 ## Getting started
 If it applies, follow the instructions provided on the course's private channel. 
 
-In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solution or "cheat-sheets" can be found in the [/solutions/](/solutions/) folder. The examples rely on 3 main Julia modules, `Plots.jl`, `PyPlot.jl` and `CUDA.jl`. The xpu example requires `ParallelStencil.jl` to be soon released publicly.
+In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solution or "cheat-sheets" can be found in the [/solutions/](/solutions/) folder. The examples rely on 3 main Julia modules, `Plots.jl`, `PyPlot.jl` and `CUDA.jl`. The XPU example requires [ParallelStencil.jl] to be installed.
 
 There are two ways of executing a Julia script, from the Julia command window known as the [Julia REPL], or from the terminal shell directly.
 
@@ -116,7 +116,7 @@ During the course, we will go through the following steps:
 6. See how the function-based loop version (5.) can be further extended to checking bounds with `if` statement in the `ix` and `iy` loops, including "loop-fusion" for the flux computations [/scripts/heat_2D_loop_fun_gpustyle.jl](/scripts/heat_2D_loop_fun_gpustyle.jl).
 7. See how one can simply use the **GPU** to perform the 2D heat diffusion calculations [/scripts/heat_2D_gpu.jl](/scripts/heat_2D_gpu.jl).
 8. **TODO** The performance "magic"; update the script [/scripts/heat_2D_gpu_fun_tmp.jl](/scripts/heat_2D_gpu_fun_tmp.jl) based on previous knowledge and step (5.).
-9. See how steps 5. and 7. can be combined into a single code using `ParallelStencil.jl` in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
+9. See how steps 5. and 7. can be combined into a single code using [ParallelStencil.jl] in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
 10. Discussion on CPU vs GPU architectures and performance evaluation (T_eff). Q&A.
 
 ---
@@ -148,8 +148,8 @@ julia> ]
 (geo-hpc-course) pkg> instantiate
 julia> using Plots
 julia> using CUDA 
+julia> using ParallelStencil
 ```
-_Note: `ParallelStencil.jl` is about to be publicly released and will then be listed here as well._
 
 If your GPU system contains more than one GPU, you can add following at the beginning of each `gpu` named code to target a specific device identified by its unique `ID` (default being `0`):
 ```julia
@@ -187,6 +187,7 @@ $ sudo dnf install google-noto-emoji-color-fonts.noarch
 [JULIA_NUM_THREADS]:https://docs.julialang.org/en/v1.0.0/manual/environment-variables/#JULIA_NUM_THREADS-1
 [CUDA.jl]: https://github.com/JuliaGPU/CUDA.jl
 [Plots.jl]: https://github.com/JuliaPlots/Plots.jl
+[ParallelStencil.jl]: https://github.com/omlins/ParallelStencil.jl
 [Julia REPL]: https://docs.julialang.org/en/v1/stdlib/REPL/
 [JuliaGPU]: https://juliagpu.org
 [emoji]: https://opensource.com/article/19/10/how-type-emoji-linux
