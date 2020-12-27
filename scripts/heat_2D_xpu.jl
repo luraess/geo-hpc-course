@@ -42,8 +42,8 @@ end
     T      = Data.Array( exp.(.-(xc.-lx./2.0).^2 .-(yc.-ly./2.0)'.^2) )
     dt     = min(dx^2,dy^2)/ρCp/λ/4.1
     # action
-    t0     = Base.time()
     for it = 1:nt
+        if (it==11) global t0 = Base.time() end
         @parallel compute_flux!(qx, qy, T, λ, dx, dy)
         @parallel update_T!(T, qx, qy, dt, ρCp, dx, dy)
         if mod(it,nout)==0 && viz
@@ -52,7 +52,7 @@ end
         end
     end
     time_s = (Base.time()-t0)
-    @printf("Time = %1.4e s, T_eff = %1.2f GB/s \n", time_s, round((2/1e9*nx*ny*sizeof(lx))/(time_s/nt), sigdigits=2))
+    @printf("Time = %1.4e s, T_eff = %1.2f GB/s \n", time_s, round((2/1e9*nx*ny*sizeof(lx))/(time_s/(nt-10)), sigdigits=2))
     return
 end
 
