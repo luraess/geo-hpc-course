@@ -145,11 +145,14 @@ $ julia --project
 In case, modules can be manually added within Julia:
 ```julia-repl
 julia> ]
-(geo-hpc-course) pkg> instantiate
+(geo-hpc-course) pkg> add CUDA
+(geo-hpc-course) pkg> add Plots
+(geo-hpc-course) pkg> add https://github.com/omlins/ParallelStencil.jl
+julia> using CUDA
 julia> using Plots
-julia> using CUDA 
 julia> using ParallelStencil
 ```
+_Note: Once [ParallelStencil.jl] will be registered, the `pkg> add` steps may be replaced by `instantiate`._
 
 If your GPU system contains more than one GPU, you can add following at the beginning of each `gpu` named code to target a specific device identified by its unique `ID` (default being `0`):
 ```julia
