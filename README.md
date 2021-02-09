@@ -48,7 +48,7 @@ We will use (1) as playground to address:
 - vectorised plain Julia implementation _CPU_ (idem as python, Matlab, Octave)
 - vectorised versus loop versions on _CPU_
 - "kernel"-style loops and multi-threading _multi-core CPU_
-- vectorised plain Julia with GPU backend _GPU_ (idem as abstract GPU functions for e.g. python, Matlab)
+- vectorised plain Julia with _GPU_ backend (similar to abstract GPU functions for e.g. python, Matlab)
 - explicit "kernel"-style _GPU_ (Julia's power: C CUDA low-level handles)
 - using [ParallelStencil.jl] enabling single/multi-XPU (both _multi-core CPU_ and _GPU_)
 
