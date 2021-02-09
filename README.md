@@ -124,7 +124,7 @@ During the course, we will go through the following steps:
 11. **Intro _part 2_**
 12. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to convert the heat diffusion `T` into an ice cap thickness `H` evolution over time.
 13. **TODO** Modify the the script from (12.) to have an implicit solver while reaching a steady-state solution.
-14. **TODO** (NEW!) You demystified GPU computing with completing step 9; update the script [/scripts/sia_2D_xpu_tmp.jl](/scripts/sia_2D_xpu_tmp.jl) to have a XPU (CPU or GPU) code ready!
+14. **TODO** (NEW!) You demystified GPU computing with completing step 9. Update now the script [/scripts/sia_2D_xpu_tmp.jl](/scripts/sia_2D_xpu_tmp.jl) to have an XPU (CPU or GPU) code ready!
 15. Discussion about pseudo-transient solvers, damping and convergence. Q&A.
 
 ---
