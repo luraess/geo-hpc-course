@@ -6,11 +6,11 @@ viz = false
     # physics
     lx    = 10.0
     ly    = 10.0
-    n     = 3
-    niter = 10000
+    n     = 3.0
     # numerics
     nx    = 128-1
     ny    = 128-1
+    niter = 10000
     nout  = 100
     dmp   = 0.96
     ε     = 1e-8

@@ -6,7 +6,7 @@ viz = true
     # physics
     lx   = 10.0
     ly   = 10.0
-    n    = 3
+    n    = 3.0
     nt   = 5000
     # numerics
     nx   = 128-1
