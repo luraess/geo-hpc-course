@@ -116,19 +116,20 @@ During the course, we will go through the following steps:
 6. See how the function-based loop version (5.) can be further extended to checking bounds with `if` statement in the `ix` and `iy` loops, including "loop-fusion" for the flux computations [/scripts/heat_2D_loop_fun_gpustyle.jl](/scripts/heat_2D_loop_fun_gpustyle.jl).
 7. See how one can simply use the **GPU** to perform the 2D heat diffusion calculations [/scripts/heat_2D_gpu.jl](/scripts/heat_2D_gpu.jl).
 8. **TODO** The performance "magic"; update the script [/scripts/heat_2D_gpu_fun_tmp.jl](/scripts/heat_2D_gpu_fun_tmp.jl) based on previous knowledge and step (5.).
-9. See how steps 5. and 7. can be combined into a single code using [ParallelStencil.jl] in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
+9. See how steps 5., 6. and 7. can be combined into a single code using [ParallelStencil.jl] in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
 10. Discussion on CPU vs GPU architectures and performance evaluation (T_eff). Q&A.
 
 ---
 
-11. **Intro  _part 2_**
-12. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to convert the heat diffusion `T` into an ice cap `H` evolution over time.
-13. **TODO** Modify the the script from (11.) to have an implicit solver while reaching a steady-state solution.
-14. Discussion about pseudo-transient solvers, damping and convergence. Q&A.
+11. **Intro _part 2_**
+12. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to convert the heat diffusion `T` into an ice cap thickness `H` evolution over time.
+13. **TODO** Modify the the script from (12.) to have an implicit solver while reaching a steady-state solution.
+14. **TODO** (NEW!) You demystified GPU computing with completing step 9; update the script [/scripts/sia_2D_xpu_tmp.jl](/scripts/sia_2D_xpu_tmp.jl) to have a XPU (CPU or GPU) code ready!
+15. Discussion about pseudo-transient solvers, damping and convergence. Q&A.
 
 ---
 
-15. **_part 3_ to come...**
+16. **_part 3_ to come...**
 
 ## Advanced start
 Steps already done on the GPU server you are running on (CentOS 8 linux)
