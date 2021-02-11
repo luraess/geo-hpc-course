@@ -16,7 +16,6 @@ viz = false
     dy   = ly/ny
     xc   = LinRange(dx/2, lx-dx/2, nx)
     yc   = LinRange(dy/2, ly-dy/2, ny)
-    H    = zeros(nx  ,ny  )
     qx   = zeros(nx+1,ny  )
     qy   = zeros(nx  ,ny+1)
     b    = 0.5*ones(nx  ,ny  )

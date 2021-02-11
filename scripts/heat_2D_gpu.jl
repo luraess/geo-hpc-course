@@ -17,7 +17,6 @@ viz = false
     dy   = ly/ny
     xc   = LinRange(dx/2, lx-dx/2, nx)
     yc   = LinRange(dy/2, ly-dy/2, ny)
-    T    = CUDA.zeros(nx  ,ny  )
     qx   = CUDA.zeros(nx+1,ny  )
     qy   = CUDA.zeros(nx  ,ny+1)
     T    = CuArray( exp.(.-(xc.-lx./2.0).^2 .-(yc.-ly./2.0)'.^2) )

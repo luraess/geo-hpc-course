@@ -12,7 +12,6 @@ viz = true
     nx  = 127
     dx  = lx/nx
     xc  = LinRange(dx/2, lx-dx/2, nx)
-    t   = zeros(nx  )
     qx  = zeros(nx+1)
     T   = exp.(.-(xc.-lx./2.0).^2)
     dt  = dx^2/ρCp/λ/2.1

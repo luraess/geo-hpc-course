@@ -36,7 +36,6 @@ end
     dy     = ly/ny
     xc     = LinRange(dx/2, lx-dx/2, nx)
     yc     = LinRange(dy/2, ly-dy/2, ny)
-    T      = @zeros(nx  ,ny  )
     qx     = @zeros(nx+1,ny  )
     qy     = @zeros(nx  ,ny+1)
     T      = Data.Array( exp.(.-(xc.-lx./2.0).^2 .-(yc.-ly./2.0)'.^2) )

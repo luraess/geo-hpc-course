@@ -12,7 +12,6 @@ viz = true
     nx  = 128-1
     dx  = lx/nx
     xc  = LinRange(dx/2, lx-dx/2, nx)
-    t   = zeros(nx  )
     qx  = zeros(nx+1)
     # TODO add initial condition
     dt  = dx^2/ρCp/λ/2.1

@@ -18,7 +18,6 @@ println("Animation directory: $(anim.dir)")
     ∂y   = ly/ny
     xc   = LinRange(∂x/2, lx-∂x/2, nx)
     yc   = LinRange(∂y/2, ly-∂y/2, ny)
-    🔥   = zeros(nx  ,ny  )
     qx   = zeros(nx+1,ny  )
     qy   = zeros(nx  ,ny+1)
     🔥   = exp.(.-(xc.-lx./2.0).^2 .-(yc.-ly./2.0)'.^2)
