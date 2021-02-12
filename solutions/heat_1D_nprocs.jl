@@ -43,8 +43,8 @@ viz = true
             Tg[i1:i1+nx-2] .= T[1:end-1,ip]
         end
         # visualise
-        plot(xt, Tt, legend=false, linewidth=2, xlabel="lx", ylabel="heat")
-        display(plot!(xt, Tg, legend=false, linewidth=2, xlabel="lx", ylabel="heat", title="diffusion it=$(it)"))
+        plot(xt, Tt, legend=false, linewidth=5, xlabel="lx", ylabel="heat")
+        display(plot!(xt, Tg, legend=false, linewidth=5, xlabel="lx", ylabel="heat", title="diffusion it=$(it)"))
     end
 end
 
