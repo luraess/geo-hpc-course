@@ -22,8 +22,8 @@ end
 
 @views function heat_1D_mpi()
     # MPI
-    dims        = [0]
     MPI.Init()
+    dims        = [0]
     comm        = MPI.COMM_WORLD
     nprocs      = MPI.Comm_size(comm)
     MPI.Dims_create!(nprocs, dims)
@@ -36,19 +36,18 @@ end
     lx   = 10.0
     λ    = 1.0
     ρCp  = 1.0
-    nt   = 20
+    nt   = 100
     # numerics
-    nx   = 31
-    nx_g = dims[1]*(nx-2) + 2
-    dx   = lx/nx_g # global
+    nx   = 31   # local
+    nx_g = dims[1]*(nx-2) + 2 # global
+    dx   = lx/nx_g            # global
     dt   = dx^2/ρCp/λ/2.1
     # array initialisation
-    xc   = zeros(nx  )  
     qx   = zeros(nx-1)
     T    = zeros(nx  )
     # initial condition
-    x0   = coords[1]*(nx-2)*dx + dx/2
-    xc  .= [x0 + ix*dx - 0.5*lx for ix=1:nx]
+    x0   = coords[1]*(nx-2)*dx
+    xc   = [x0 + ix*dx - dx/2 - 0.5*lx  for ix=1:nx]
     T   .= exp.(.-xc.^2)
     # action
     t0  = Base.time()
@@ -59,7 +58,7 @@ end
      end
     time_s = (Base.time()-t0)
     if (me==0) @printf("Time = %1.4e s, T_eff = %1.2f GB/s \n", time_s, round((2/1e9*nx*sizeof(lx))/(time_s/nt), sigdigits=2)) end
-    if do_save file = matopen("T_$me.mat", "w"); write(file, "T", Array(T)); close(file) end
+    if do_save file = matopen("$(@__DIR__)/T_$(me).mat", "w"); write(file, "T", Array(T)); close(file) end
     MPI.Finalize()
     return
 end
