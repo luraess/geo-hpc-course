@@ -44,7 +44,7 @@ For an initial Gaussian distribution of ice and a circular and centred source/si
 
 #### These two examples will enable to address the technical objectives of this course (3 parts).
 
-**_part 1_** We will use (1) as playground to address:
+**_Part 1_** | We will use (1) as playground to address:
 - vectorised plain Julia implementation _CPU_ (idem as python, Matlab, Octave)
 - vectorised versus loop versions on _CPU_
 - "kernel"-style loops and multi-threading _multi-core CPU_
@@ -52,12 +52,12 @@ For an initial Gaussian distribution of ice and a circular and centred source/si
 - explicit "kernel"-style _GPU_ (Julia's power: C CUDA low-level handles)
 - enabling single/multi-XPU (both _multi-core CPU_ and _GPU_) using [ParallelStencil.jl] 
 
-**_part 2_** We will use (2) as playground to address:
+**_Part 2_** | We will use (2) as playground to address:
 - explicit time stepping
 - transient, steady-state solutions
 - explicit vs implicit solutions
 
-**_part 3_** We will use (1) to address:
+**_Part 3_** | We will use (1) to address:
 - distributed memory parallelisation ("fake" and "real" parallelisation)
 - local and global domain, internal and global boundaries, global initial condition, boundary update, synchronisation
 - message passing interface (MPI), MPI + GPU (CUDA-aware MPI)
@@ -111,7 +111,7 @@ Set the default `viz = false` flag to `true` if you want to plot output in all c
 ## Running MPI
 This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start MPI](#advanced-start-mpi) section and the [MPI.jl] docs.
 
-_Note: The concise Julia MPI scripts are inspired from a [2D python script](https://github.com/omlins/adios2-tutorial/blob/main/example/mpi_diffusion2D.py)_
+_Note: The concise Julia MPI scripts are inspired from [this 2D python script](https://github.com/omlins/adios2-tutorial/blob/main/example/mpi_diffusion2D.py)._
 
 ## Course outline
 During the course, we will go through the following steps:
@@ -179,7 +179,7 @@ CUDA.device!(GPU_ID)
 ## Advanced start MPI
 The following steps permit you to install [MPI.jl] on your machine:
 1. Add `MPI.jl`:
-```julia
+```julia-repl
 (project) pkg> add MPI
 
 julia> using MPI
@@ -191,19 +191,18 @@ julia> MPI.install_mpiexecjl()
 ```
 2. Then, one should add `/Users/<username>/.julia/bin` to PATH in order to launch the Julia MPI wrapper `mpiexecjl`.
 
-3. Running the Julia MPI code
+3. Running the Julia MPI code on 3 processes:
 ```sh
 /Users/<username>/.julia/bin/mpiexecjl -n 3 julia --project solutions/hello_mpi.jl
 ```
-_Note: On MacOS, there seems to be an issue https://github.com/JuliaParallel/MPI.jl/issues/407._
-To fix it, define following `ENV variable`
+_Note: On MacOS, there seems to be an issue (https://github.com/JuliaParallel/MPI.jl/issues/407). To fix it, define following `ENV` variable:
 ```sh
 export MPICH_INTERFACE_HOSTNAME=localhost
 ```
 and add `-host localhost` to the execution script like this:
 ```sh
 /Users/<username>/.julia/bin/mpiexecjl -n 3 -host localhost julia --project solutions/hello_mpi.jl
-```
+```_
 
 ## Extras
 [Julia] supports UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out-of-the-box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) examplifies these two fun capabilities.
