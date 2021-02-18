@@ -195,14 +195,14 @@ julia> MPI.install_mpiexecjl()
 ```sh
 /Users/<username>/.julia/bin/mpiexecjl -n 3 julia --project solutions/hello_mpi.jl
 ```
-_Note: On MacOS, there seems to be an issue (https://github.com/JuliaParallel/MPI.jl/issues/407). To fix it, define following `ENV` variable:
+Note: On MacOS, there seems to be an issue (https://github.com/JuliaParallel/MPI.jl/issues/407). To fix it, define following `ENV` variable:
 ```sh
 export MPICH_INTERFACE_HOSTNAME=localhost
 ```
-and add `-host localhost` to the execution script like this:
+and add `-host localhost` to the execution script:
 ```sh
 /Users/<username>/.julia/bin/mpiexecjl -n 3 -host localhost julia --project solutions/hello_mpi.jl
-```_
+```
 
 ## Extras
 [Julia] supports UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out-of-the-box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) examplifies these two fun capabilities.
