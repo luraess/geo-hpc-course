@@ -1,5 +1,10 @@
 # geo-hpc-course
 
+#### on work:
+- multixpu heat and sia scripts
+- modify fluxes to nx-1 instead of nx+1
+- finalise the running MPI section
+
 #### Parallel CPU and GPU high-performance computing course
 This short course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This short course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
 
@@ -154,11 +159,6 @@ During the course, we will go through the following steps:
 22. Now that you demystified distributed memory parallelisation, see how using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl] leads to concise and efficient distributed memory parallelisation on multiple _XPUs_ in 2D [/scripts/heat_2D_multixpu.jl](/scripts/heat_2D_multixpu.jl). Also, take a closer look at the "hide communication" feature.
 23. **TODO** Instrument the 2D shallow ice code sia_2D_xpu.jl (14.) to enable distributed memory parallelisation using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl]. _Use [/solutions/sia_2D_xpu.jl](/solutions/sia_2D_xpu.jl) for a quick start._
 24. Yay, you made it - you demystified running Julia codes in parallel on multi-XPU :-) Q&A.
-
-to-do lr:
-- multixpu heat and sia scripts
-- modify fluxes to nx-1 instead of nx+1
-- finalise the running MPI section
 
 
 ## Advanced start
