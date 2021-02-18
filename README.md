@@ -113,7 +113,7 @@ Note that interactive plotting may fail then.
 Set the default `viz = false` flag to `true` if you want to plot output in all codes beyond step 2.
 
 #### Running Julia MPI
-This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start Julia MPI](#advanced-start) section and the [MPI.jl] docs.
+This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start - Julia MPI](#julia-mpi) section and the [MPI.jl] docs.
 
 _Note: The concise Julia MPI scripts are inspired from [this 2D python script](https://github.com/omlins/adios2-tutorial/blob/main/example/mpi_diffusion2D.py)._
 
@@ -145,7 +145,7 @@ During the course, we will go through the following steps:
 16. **Intro _part 3_ (NEW!)**
 17. **TODO** Finalise the 1D heat diffusion code [/scripts/heat_1D_2procs_tmp.jl](/scripts/heat_1D_2procs_tmp.jl), splitting the calculation of temperature evolution on one left and one right domain. This "fake-parallelisation" requires left and right temperature arrays, `TL` and `TR`, respectively.
 18. **TODO** Generalise the "fake-parallel" approach on 2 processes to `n` processes by modifying the code [/scripts/heat_1D_nprocs_tmp.jl](/scripts/heat_1D_nprocs_tmp.jl), taking care of implementing the initial condition, heat diffusion physics and the boundary update.
-19. The script [/scripts/hello_mpi.jl](/scripts/hello_mpi.jl) shows a "Hello World" example implementing [MPI.jl]. Use this script to test your [MPI.jl] install (see the [Getting started Running Julia MPI](#getting-started) section for more infos on installing and running Julia MPI).
+19. The script [/scripts/hello_mpi.jl](/scripts/hello_mpi.jl) shows a "Hello World" example implementing [MPI.jl]. Use this script to test your [MPI.jl] install (see the [Running Julia MPI](#running-julia-mpi) section for more infos on installing and running Julia MPI).
 20. Discover a concise MPI 1D heat diffusion example [/scripts/heat_1D_mpi.jl](/scripts/heat_1D_mpi.jl). Learn about the minimal requirements to initialise a Cartesian MPI topology and how to code the boundary update functions (here using blocking messages). Use the [/scripts/vizme1D_mpi.jl](/scripts/vizme1D_mpi.jl) script to visualise the results (each MPI process saving it's local output).
 21. **TODO** MPI in 2D [/scripts/heat_2D_mpi_tmp.jl](/scripts/heat_2D_mpi_tmp.jl)
 22. See how 2D MPI can be done using IGG
@@ -200,15 +200,15 @@ julia> MPI.install_mpiexecjl()
 
 3. Running the Julia MPI code on 3 processes:
 ```sh
-HOME/.julia/bin/mpiexecjl -n 3 julia --project solutions/hello_mpi.jl
+$ HOME/.julia/bin/mpiexecjl -n 3 julia --project solutions/hello_mpi.jl
 ```
 _Note: On MacOS, there seems to be an issue (https://github.com/JuliaParallel/MPI.jl/issues/407). To fix it, define following `ENV` variable:_
 ```sh
-export MPICH_INTERFACE_HOSTNAME=localhost
+$ export MPICH_INTERFACE_HOSTNAME=localhost
 ```
 _and add `-host localhost` to the execution script:_
 ```sh
-HOME/.julia/bin/mpiexecjl -n 3 -host localhost julia --project solutions/hello_mpi.jl
+$ HOME/.julia/bin/mpiexecjl -n 3 -host localhost julia --project solutions/hello_mpi.jl
 ```
 
 
