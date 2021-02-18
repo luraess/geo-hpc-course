@@ -57,9 +57,10 @@ For an initial Gaussian distribution of ice and a circular and centred source/si
 - transient, steady-state solutions
 - explicit vs implicit solutions
 
-**_Part 3_** | We will use (1) to address:
+**_Part 3_** | We will use (1) and (2) to address:
 - distributed memory parallelisation ("fake" and "real" parallelisation)
-- local and global domain, internal and global boundaries, global initial condition, boundary update, synchronisation
+- local and global domain, internal and global boundaries, initial condition, boundary update, synchronisation
+- I/O and visualisation
 - message passing interface (MPI), MPI + GPU (CUDA-aware MPI)
 - communication/computation overlap (hide communication)
 - using [ImplicitGlobalGrid.jl] for high-level implementation along with [ParallelStencil.jl]
@@ -115,6 +116,8 @@ Set the default `viz = false` flag to `true` if you want to plot output in all c
 #### Running Julia MPI
 This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start - Julia MPI](#julia-mpi) section and the [MPI.jl] docs.
 
+TODO add more infos here.
+
 _Note: The concise Julia MPI scripts are inspired from [this 2D python script](https://github.com/omlins/adios2-tutorial/blob/main/example/mpi_diffusion2D.py)._
 
 
@@ -147,9 +150,10 @@ During the course, we will go through the following steps:
 18. **TODO** Generalise the "fake-parallel" approach on 2 processes to `n` processes by modifying the code [/scripts/heat_1D_nprocs_tmp.jl](/scripts/heat_1D_nprocs_tmp.jl), taking care of implementing the initial condition, heat diffusion physics and the boundary update.
 19. The script [/scripts/hello_mpi.jl](/scripts/hello_mpi.jl) shows a "Hello World" example implementing [MPI.jl]. Use this script to test your [MPI.jl] install (see the [Running Julia MPI](#running-julia-mpi) section for more infos on installing and running Julia MPI).
 20. Discover a concise MPI 1D heat diffusion example [/scripts/heat_1D_mpi.jl](/scripts/heat_1D_mpi.jl). Learn about the minimal requirements to initialise a Cartesian MPI topology and how to code the boundary update functions (here using blocking messages). Use the [/scripts/vizme1D_mpi.jl](/scripts/vizme1D_mpi.jl) script to visualise the results (each MPI process saving it's local output).
-21. **TODO** MPI in 2D [/scripts/heat_2D_mpi_tmp.jl](/scripts/heat_2D_mpi_tmp.jl)
-22. See how 2D MPI can be done using IGG
-23. **TODO** modify the 2D sia_2D_xpu.jl to use IGG for MPI
+21. **TODO** Yay, you have your MPI 1D Julia script running! Finalise the MPI 2D heat diffusion script [/scripts/heat_2D_mpi_tmp.jl](/scripts/heat_2D_mpi_tmp.jl) to solve the 2D diffusion equation using MPI.
+22. Now that you demystified distributed memory parallelisation, see how using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl] leads to concise and efficient distributed memory parallelisation on multiple _XPUs_ in 2D [/scripts/heat_2D_multixpu.jl](/scripts/heat_2D_multixpu.jl). Also, take a closer look at the "hide communication" feature.
+23. **TODO** Instrument the 2D shallow ice code sia_2D_xpu.jl (14.) to enable distributed memory parallelisation using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl]. _Use [/solutions/sia_2D_xpu.jl](/solutions/sia_2D_xpu.jl) for a quick start._
+24. Yay, you made it - you demystified running Julia codes in parallel on multi-XPU :-) Q&A.
 
 
 ## Advanced start
