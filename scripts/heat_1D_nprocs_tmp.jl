@@ -23,7 +23,7 @@ viz = true
     for ip = 1:np
         i1 = 1 + (ip-1)*(nx-2)
         for ix = 1:nx
-            x[ix,ip] = ( (ip-1)*(nx-2) + (ix-0.5) )*dxg - 0.5*lx
+            x[ix,ip] = # TODO: define the global coordinate vector such that x = (ix-0.5)*dx - 0.5*lx
             T[ix,ip] = exp(-x[ix,ip]^2)
         end
         xt[i1:i1+nx-2] .= x[1:end-1,ip]; if (ip==np) xt[i1+nx-1] = x[end,ip] end
@@ -32,11 +32,10 @@ viz = true
     # action
     for it = 1:nt
         for ip = 1:np # compute physics locally
-            T[2:end-1,ip] .= T[2:end-1,ip] .+ dt.*λ./ρCp.*diff(diff(T[:,ip])./dxg)./dxg
+            T[2:end-1,ip] .= # TODO: implement heat diffusion: ∆T/dt = λ/ρCp ∂^2(T)/dx^2
         end
         for ip = 1:np-1 # update boundaries
-            T[end,ip  ] = T[    2,ip+1]
-            T[  1,ip+1] = T[end-1,ip  ]
+            # TODO: update the inner boundaries to ensure a correct solution
         end
         for ip = 1:np # global picture
             i1 = 1 + (ip-1)*(nx-2)
