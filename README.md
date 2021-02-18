@@ -85,19 +85,19 @@ On the CPU, multi-threading is made accessible via [Base.Threads] and the enviro
 The course material contains some ready-to-run _example_ scripts, draft _tmp_ scripts to be complete as tasks during the course and their corresponding _solution_ scripts.
 
 #### example scripts
-The active working directory for the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts to be worked on.
+The active working directory for the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts to work on.
 
 #### solution scripts
-All _tmp_ scripts have the corresponding solution scripts located in [/solutions/](/solutions/)
+All _tmp_ scripts have their corresponding solution scripts located in [/solutions/](/solutions/)
 
 
 ## Getting started
 If it applies, follow the instructions provided on the course's private channel. 
 
 #### Julia quick start
-In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solution or "cheat-sheets" can be found in the [/solutions/](/solutions/) folder. The examples rely on 3 main Julia modules, `Plots.jl`, `PyPlot.jl` and `CUDA.jl`. The XPU example requires [ParallelStencil.jl] to be installed.
+In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solutions or "cheat-sheets" can be found in the [/solutions/](/solutions/) folder. The examples rely on 3 main Julia modules, `Plots.jl` (and `PyPlot.jl`) and `CUDA.jl`. The XPU example requires [ParallelStencil.jl] to be installed. The MPI examples require `MPI.jl` to be installed and the multi-XPU scripts rquire [ImplicitGlobalGrid.jl].
 
-There are two ways of executing a Julia script, from the Julia command window known as the [Julia REPL], or from the terminal shell directly.
+There are two ways of executing a Julia script, from the Julia command window known as the [Julia REPL], or from the terminal shell directly. The MPI and multi-XPU examples need to be executed from the terminal shell.
 
 To run Julia interactively, start Julia from the shell (or Terminal). Go to the `geo-hpc-course` folder. Then start Julia appending the `--project` flag to gain access to the required modules:
 ```sh
@@ -110,7 +110,7 @@ julia> include("<my_script>.jl")
 ```
 Note that typing `;` in the [Julia REPL] permits you to execute shell commands (like `cd ..`).
 
-For optimal performance (like measuring T_eff), it is more optimal to run Julia as executable from the shell directly, using the optimisation flag `-O3` and disabling bound checking `--check-bounds=no` as following:
+For optimal performance (like measuring T_eff) and for running Julia MPI, run Julia as executable from the shell directly, using the optimisation flag `-O3` and disabling bound checking `--check-bounds=no` as following:
 ```sh
 $ julia --project -O3 --check-bounds=no <my_script>.jl
 ```
@@ -119,11 +119,16 @@ Note that interactive plotting may fail then.
 Set the default `viz = false` flag to `true` if you want to plot output in all codes beyond step 2.
 
 #### Running Julia MPI
-This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start - Julia MPI](#julia-mpi) section and the [MPI.jl] docs.
+This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start - Julia MPI](#julia-mpi) section and the [MPI.jl] doc.
 
-TODO add more infos here.
+Assuming a working Julia MPI installation, a Julia MPI program can be launched using the Julia MPI wrapper `mpiexecjl` (located in `~/.julia/bin`).
 
-_Note: The concise Julia MPI scripts are inspired from [this 2D python script](https://github.com/omlins/adios2-tutorial/blob/main/example/mpi_diffusion2D.py)._
+Running the Julia MPI `hello_mpi.jl` code on 4 processes can be achieved following:
+```sh
+$ mpiexecjl -n 4 julia --project solutions/hello_mpi.jl
+```
+
+_Note: The presented concise Julia MPI scripts are inspired from [this 2D python script](https://github.com/omlins/adios2-tutorial/blob/main/example/mpi_diffusion2D.py)._
 
 
 ## Course outline
