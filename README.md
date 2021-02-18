@@ -3,7 +3,6 @@
 #### on work:
 - multixpu heat and sia scripts
 - modify fluxes to nx-1 instead of nx+1
-- finalise the running MPI section
 
 #### Parallel CPU and GPU high-performance computing course
 This short course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This short course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
@@ -119,14 +118,22 @@ Note that interactive plotting may fail then.
 Set the default `viz = false` flag to `true` if you want to plot output in all codes beyond step 2.
 
 #### Running Julia MPI
-This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start - Julia MPI](#julia-mpi) section and the [MPI.jl] doc.
+This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start - Julia MPI](#julia-mpi) section and the [MPI.jl] doc. In the proposed approach, each MPI process will handle one CPU thread. In the MPI GPU case, one GPU is related to each MPI process.
 
 Assuming a working Julia MPI installation, a Julia MPI program can be launched using the Julia MPI wrapper `mpiexecjl` (located in `~/.julia/bin`).
 
-Running the Julia MPI `hello_mpi.jl` code on 4 processes can be achieved following:
+Running the Julia MPI [/scripts/hello_mpi.jl](/scripts/hello_mpi.jl) script on 4 processes can be achieved following:
 ```sh
-$ mpiexecjl -n 4 julia --project solutions/hello_mpi.jl
+$ mpiexecjl -n 4 julia --project scripts/hello_mpi.jl
+$ Hello world, I am 0 of 3
+$ Hello world, I am 1 of 3
+$ Hello world, I am 2 of 3
+$ Hello world, I am 3 of 3
 ```
+
+The 2D Julia MPI diffusion script [/solutions/heat_2D_mpi.jl](/solutions/heat_2D_mpi.jl) produces following output (see [Extras](#extras) for infos about the gif-making scripts).
+
+![heat diffusion 2D](/docs/heat_2D_mpi_4procs.gif)
 
 _Note: The presented concise Julia MPI scripts are inspired from [this 2D python script](https://github.com/omlins/adios2-tutorial/blob/main/example/mpi_diffusion2D.py)._
 
@@ -214,7 +221,7 @@ julia> MPI.install_mpiexecjl()
 
 3. Running the Julia MPI code on 3 processes:
 ```sh
-$ HOME/.julia/bin/mpiexecjl -n 3 julia --project solutions/hello_mpi.jl
+$ HOME/.julia/bin/mpiexecjl -n 4 julia --project scripts/hello_mpi.jl
 ```
 _Note: On MacOS, there seems to be an issue (https://github.com/JuliaParallel/MPI.jl/issues/407). To fix it, define following `ENV` variable:_
 ```sh
@@ -222,14 +229,16 @@ $ export MPICH_INTERFACE_HOSTNAME=localhost
 ```
 _and add `-host localhost` to the execution script:_
 ```sh
-$ HOME/.julia/bin/mpiexecjl -n 3 -host localhost julia --project solutions/hello_mpi.jl
+$ HOME/.julia/bin/mpiexecjl -n 3 -host localhost julia --project scripts/hello_mpi.jl
 ```
 
 
 ## Extras
-[Julia] supports UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out-of-the-box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) examplifies these two fun capabilities.
+[Julia] supports UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out-of-the-box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) exemplifies these two fun capabilities.
 
 The code [/extras/sia_2D_ss_gif.jl](/extras/sia_2D_ss_gif.jl) uses the out-of-the-box gif-making capabilities to produce the SIA non-linear diffusion gif.
+
+The code [/extras/heat_2D_mpi_gif.jl](/extras/heat_2D_mpi_gif.jl) produces time-dependent output to be visualised as a gif using the [/extras/vizme2D_mpi_gif.jl](/extras/vizme2D_mpi_gif.jl) script.
 
 _Note: On Linux machines, [emoji] keyboard may need to be installed in order to display the Unicode emoticons._
 ```sh
