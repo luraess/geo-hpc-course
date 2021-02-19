@@ -1,29 +1,33 @@
 using Plots, Printf
-pyplot()
-viz = true
+# pyplot()
+do_viz = true
 
 @views function heat_1D()
-    # physics
+    # Physics
     lx  = 10.0
     λ   = 1.0
     ρCp = 1.0
     nt  = 200
-    # numerics
-    nx  = 127
+    # Numerics
+    nx  = 128
+    # Derived numerics
     dx  = lx/nx
-    xc  = LinRange(dx/2, lx-dx/2, nx)
-    qx  = zeros(nx+1)
-    T   = exp.(.-(xc.-lx./2.0).^2)
     dt  = dx^2/ρCp/λ/2.1
-    # action
-    t0  = Base.time()
+    xc  = LinRange(dx/2, lx-dx/2, nx)
+    # Array allocation
+    qx  = zeros(nx-1)
+    # Initial condition
+    T   = exp.(.-(xc.-lx./2.0).^2)
+    # Time loop
     for it = 1:nt
-        qx[2:end-1] .= .-λ.*diff(T)./dx
-        T           .= T .- dt./ρCp.*diff(qx)./dx
+        if (it==11) global t0 = Base.time() end
+        qx         .= .-λ.*diff(T)./dx
+        T[2:end-1] .= T[2:end-1] .- dt./ρCp.*diff(qx)./dx
     end
     time_s = (Base.time()-t0)
-    @printf("Time = %1.4e s, T_eff = %1.2f GB/s \n", time_s, round((2/1e9*nx*sizeof(lx))/(time_s/nt), sigdigits=2))
-    if viz display(plot(xc, T, legend=false, xlabel="lx", ylabel="heat", title="diffusion")) end
+    @printf("Time = %1.4e s, T_eff = %1.2f GB/s \n", time_s, round((2/1e9*nx*sizeof(lx))/(time_s/(nt-10)), sigdigits=2))
+    # Visualise
+    if do_viz display(plot(xc, T, legend=false, framestyle=:box, xlabel="lx", ylabel="heat", title="diffusion")) end
     return
 end
 
