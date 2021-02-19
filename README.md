@@ -131,7 +131,7 @@ $ Hello world, I am 2 of 3
 $ Hello world, I am 3 of 3
 ```
 
-The 2D Julia MPI diffusion script [/solutions/heat_2D_mpi.jl](/solutions/heat_2D_mpi.jl) produces following output (see [Extras](#extras) for infos about the gif-making scripts).
+The 2D Julia MPI diffusion script [/solutions/heat_2D_mpi.jl](/solutions/heat_2D_mpi.jl) executed on 4 MPI processes (global grid: 2x2) produces the following output (see [Extras](#extras) for infos about the gif-making scripts).
 
 ![heat diffusion 2D](/docs/heat_2D_mpi_4procs.gif)
 
