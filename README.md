@@ -1,9 +1,5 @@
 # geo-hpc-course
 
-#### on work:
-- multixpu heat and sia scripts
-- modify fluxes to nx-1 instead of nx+1
-
 #### Parallel CPU and GPU high-performance computing course
 This short course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This short course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
 
