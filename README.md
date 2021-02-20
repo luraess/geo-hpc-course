@@ -190,9 +190,16 @@ julia> ]
 (geo-hpc-course) pkg> add CUDA
 (geo-hpc-course) pkg> add Plots
 (geo-hpc-course) pkg> add https://github.com/omlins/ParallelStencil.jl
+(geo-hpc-course) pkg> add MPI
+(geo-hpc-course) pkg> add MAT
+(geo-hpc-course) pkg> add https://github.com/eth-cscs/ImplicitGlobalGrid.jl
+julia>
 julia> using CUDA
 julia> using Plots
 julia> using ParallelStencil
+julia> using MPI
+julia> using MAT
+julia> using ImplicitGlobalGrid
 ```
 _Note: Once [ParallelStencil.jl] will be registered, the `pkg> add` steps may be replaced by `instantiate`._
 
