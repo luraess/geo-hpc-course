@@ -60,7 +60,7 @@ For an initial Gaussian distribution of ice and a circular and centred source/si
 **_Part 3_** | We will use (1) and (2) to address:
 - distributed memory parallelisation ("fake" and "real" parallelisation)
 - local and global domain, internal and global boundaries, initial condition, boundary update, synchronisation
-- I/O and visualisation
+- visualisation and I/O
 - message passing interface (MPI), MPI + GPU (CUDA-aware MPI)
 - communication/computation overlap (hide communication)
 - using [ImplicitGlobalGrid.jl] for high-level implementation along with [ParallelStencil.jl]
@@ -114,7 +114,7 @@ Note that interactive plotting may fail then.
 Set the default `viz = false` flag to `true` if you want to plot output in all codes beyond step 2.
 
 #### Running Julia MPI
-This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start - Julia MPI](#julia-mpi) section and the [MPI.jl] doc. In the proposed approach, each MPI process will handle one CPU thread. In the MPI GPU case, one GPU is related to each MPI process.
+This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start - Julia MPI](#julia-mpi) section and the [MPI.jl] doc. In the proposed approach, each MPI process will handle one CPU thread. In the MPI GPU case (multi-GPUs), each MPI process handles one GPU.
 
 Assuming a working Julia MPI installation, a Julia MPI program can be launched using the Julia MPI wrapper `mpiexecjl` (located in `~/.julia/bin`).
 
@@ -132,6 +132,8 @@ The 2D Julia MPI diffusion script [/solutions/heat_2D_mpi.jl](/solutions/heat_2D
 ![heat diffusion 2D](/docs/heat_2D_mpi_4procs.gif)
 
 _Note: The presented concise Julia MPI scripts are inspired from [this 2D python script](https://github.com/omlins/adios2-tutorial/blob/main/example/mpi_diffusion2D.py)._
+
+Advanced documentation on running the multi-XPU codes can be found in the [ParallelStencil.jl module documentation](https://github.com/omlins/ParallelStencil.jl#miniapp-content).
 
 
 ## Course outline
@@ -164,8 +166,8 @@ During the course, we will go through the following steps:
 19. The script [/scripts/hello_mpi.jl](/scripts/hello_mpi.jl) shows a "Hello World" example implementing [MPI.jl]. Use this script to test your [MPI.jl] install (see the [Running Julia MPI](#running-julia-mpi) section for more infos on installing and running Julia MPI).
 20. Discover a concise MPI 1D heat diffusion example [/scripts/heat_1D_mpi.jl](/scripts/heat_1D_mpi.jl). Learn about the minimal requirements to initialise a Cartesian MPI topology and how to code the boundary update functions (here using blocking messages). Use the [/scripts/vizme1D_mpi.jl](/scripts/vizme1D_mpi.jl) script to visualise the results (each MPI process saving it's local output).
 21. **TODO** Yay, you have your MPI 1D Julia script running! Finalise the MPI 2D heat diffusion script [/scripts/heat_2D_mpi_tmp.jl](/scripts/heat_2D_mpi_tmp.jl) to solve the 2D diffusion equation using MPI. Use the [/scripts/vizme2D_mpi.jl](/scripts/vizme2D_mpi.jl) script to visualise the results (each MPI process saving it's local output).
-22. Now that you demystified distributed memory parallelisation, see how using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl] leads to concise and efficient distributed memory parallelisation on multiple _XPUs_ in 2D [/scripts/heat_2D_multixpu.jl](/scripts/heat_2D_multixpu.jl). Also, take a closer look at the "hide communication" feature.
-23. **TODO** Instrument the 2D shallow ice code sia_2D_xpu.jl (14.) to enable distributed memory parallelisation using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl]. _Use [/solutions/sia_2D_xpu.jl](/solutions/sia_2D_xpu.jl) for a quick start._
+22. Now that you demystified distributed memory parallelisation, see how using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl] leads to concise and efficient distributed memory parallelisation on multiple _XPUs_ in 2D [/scripts/heat_2D_multixpu.jl](/scripts/heat_2D_multixpu.jl). Also, take a closer look at the [@hide_communication](https://github.com/luraess/geo-hpc-course/blob/0a722ac5f6da47779dfceadfec79b92c95e9e40e/scripts/heat_2D_multixpu.jl#L61) feature. Further infos can be found [here](https://github.com/omlins/ParallelStencil.jl#seamless-interoperability-with-communication-packages-and-hiding-communication).
+23. **TODO** Instrument the 2D shallow ice code sia_2D_xpu.jl (task 14.) to enable distributed memory parallelisation using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl]. _Use [/solutions/sia_2D_xpu.jl](/solutions/sia_2D_xpu.jl) for a quick start, and [/solutions/sia_2D_multixpu.jl](/solutions/sia_2D_multixpu.jl) for a solution._
 24. Yay, you made it - you demystified running Julia codes in parallel on multi-XPU :-) Q&A.
 
 
