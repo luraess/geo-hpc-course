@@ -90,7 +90,7 @@ All _tmp_ scripts have their corresponding solution scripts located in [/solutio
 If it applies, follow the instructions provided on the course's private channel. 
 
 #### Julia quick start
-In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solutions or "cheat-sheets" can be found in the [/solutions/](/solutions/) folder. The examples rely on 3 main Julia modules, `Plots.jl` (and `PyPlot.jl`) and `CUDA.jl`. The XPU example requires [ParallelStencil.jl] to be installed. The MPI examples require `MPI.jl` to be installed and the multi-XPU scripts rquire [ImplicitGlobalGrid.jl].
+In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solutions or "cheat-sheets" can be found in the [/solutions/](/solutions/) folder. The examples rely on 3 main Julia modules, `Plots.jl` (and `PyPlot.jl`) and `CUDA.jl`. The XPU examples require [ParallelStencil.jl] to be installed. The MPI examples require `MPI.jl` to be installed. The multi-XPU scripts require [ImplicitGlobalGrid.jl] to be installed.
 
 There are two ways of executing a Julia script, from the Julia command window known as the [Julia REPL], or from the terminal shell directly. The MPI and multi-XPU examples need to be executed from the terminal shell.
 
