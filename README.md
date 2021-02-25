@@ -42,20 +42,28 @@ For an initial Gaussian distribution of ice and a circular and centred source/si
 
 ![sia non-linear diffusion 2D](/docs/sia_2D.gif)
 
-#### These two examples will enable to address the technical objectives of this course.
+#### These two examples will enable to address the technical objectives of this course (3 parts).
 
-We will use (1) as playground to address:
+**_Part 1_** | We will use (1) as playground to address:
 - vectorised plain Julia implementation _CPU_ (idem as python, Matlab, Octave)
 - vectorised versus loop versions on _CPU_
 - "kernel"-style loops and multi-threading _multi-core CPU_
 - vectorised plain Julia with _GPU_ backend (similar to abstract GPU functions for e.g. python, Matlab)
 - explicit "kernel"-style _GPU_ (Julia's power: C CUDA low-level handles)
-- using [ParallelStencil.jl] enabling single/multi-XPU (both _multi-core CPU_ and _GPU_)
+- enabling single/multi-XPU (both _multi-core CPU_ and _GPU_) using [ParallelStencil.jl] 
 
-We will use (2) as playground to address:
+**_Part 2_** | We will use (2) as playground to address:
 - explicit time stepping
 - transient, steady-state solutions
 - explicit vs implicit solutions
+
+**_Part 3_** | We will use (1) and (2) to address:
+- distributed memory parallelisation ("fake" and "real" parallelisation)
+- local and global domain, internal and global boundaries, initial condition, boundary update, synchronisation
+- visualisation and I/O
+- message passing interface (MPI), MPI + GPU (CUDA-aware MPI)
+- communication/computation overlap (hide communication)
+- using [ImplicitGlobalGrid.jl] for high-level implementation along with [ParallelStencil.jl]
 
 
 ## Pre-requisite
@@ -72,18 +80,19 @@ On the CPU, multi-threading is made accessible via [Base.Threads] and the enviro
 The course material contains some ready-to-run _example_ scripts, draft _tmp_ scripts to be complete as tasks during the course and their corresponding _solution_ scripts.
 
 #### example scripts
-The active working directory for the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts to be worked on.
+The active working directory for the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts to work on.
 
 #### solution scripts
-All _tmp_ scripts have the corresponding solution scripts located in [/solutions/](/solutions/)
+All _tmp_ scripts have their corresponding solution scripts located in [/solutions/](/solutions/)
 
 
 ## Getting started
 If it applies, follow the instructions provided on the course's private channel. 
 
-In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solution or "cheat-sheets" can be found in the [/solutions/](/solutions/) folder. The examples rely on 3 main Julia modules, `Plots.jl`, `PyPlot.jl` and `CUDA.jl`. The XPU example requires [ParallelStencil.jl] to be installed.
+#### Julia quick start
+In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solutions or "cheat-sheets" can be found in the [/solutions/](/solutions/) folder. The examples rely on 3 main Julia modules, `Plots.jl` (and `PyPlot.jl`) and `CUDA.jl`. The XPU examples require [ParallelStencil.jl] to be installed. The MPI examples require `MPI.jl` to be installed. The multi-XPU scripts require [ImplicitGlobalGrid.jl] to be installed.
 
-There are two ways of executing a Julia script, from the Julia command window known as the [Julia REPL], or from the terminal shell directly.
+There are two ways of executing a Julia script, from the Julia command window known as the [Julia REPL], or from the terminal shell directly. The MPI and multi-XPU examples need to be executed from the terminal shell.
 
 To run Julia interactively, start Julia from the shell (or Terminal). Go to the `geo-hpc-course` folder. Then start Julia appending the `--project` flag to gain access to the required modules:
 ```sh
@@ -96,13 +105,35 @@ julia> include("<my_script>.jl")
 ```
 Note that typing `;` in the [Julia REPL] permits you to execute shell commands (like `cd ..`).
 
-For optimal performance (like measuring T_eff), it is more optimal to run Julia as executable from the shell directly, using the optimisation flag `-O3` and disabling bound checking `--check-bounds=no` as following:
+For optimal performance (like measuring T_eff) and for running Julia MPI, run Julia as executable from the shell directly, using the optimisation flag `-O3` and disabling bound checking `--check-bounds=no` as following:
 ```sh
 $ julia --project -O3 --check-bounds=no <my_script>.jl
 ```
 Note that interactive plotting may fail then.
 
 Set the default `viz = false` flag to `true` if you want to plot output in all codes beyond step 2.
+
+#### Running Julia MPI
+This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start - Julia MPI](#julia-mpi) section and the [MPI.jl] doc. In the proposed approach, each MPI process will handle one CPU thread. In the MPI GPU case (multi-GPUs), each MPI process handles one GPU.
+
+Assuming a working Julia MPI installation, a Julia MPI program can be launched using the Julia MPI wrapper `mpiexecjl` (located in `~/.julia/bin`).
+
+Running the Julia MPI [/scripts/hello_mpi.jl](/scripts/hello_mpi.jl) script on 4 processes can be achieved following:
+```sh
+$ mpiexecjl -n 4 julia --project scripts/hello_mpi.jl
+$ Hello world, I am 0 of 3
+$ Hello world, I am 1 of 3
+$ Hello world, I am 2 of 3
+$ Hello world, I am 3 of 3
+```
+
+The 2D Julia MPI diffusion script [/solutions/heat_2D_mpi.jl](/solutions/heat_2D_mpi.jl) executed on 4 MPI processes (global grid: 2x2) produces the following output (see [Extras](#extras) for infos about the gif-making scripts).
+
+![heat diffusion 2D](/docs/heat_2D_mpi_4procs.gif)
+
+_Note: The presented concise Julia MPI scripts are inspired from [this 2D python script](https://github.com/omlins/adios2-tutorial/blob/main/example/mpi_diffusion2D.py)._
+
+Advanced documentation on running the multi-XPU codes can be found in the [ParallelStencil.jl module documentation](https://github.com/omlins/ParallelStencil.jl#miniapp-content).
 
 
 ## Course outline
@@ -129,11 +160,21 @@ During the course, we will go through the following steps:
 
 ---
 
-16. **_part 3_ to come...**
+16. **Intro _part 3_ (NEW!)**
+17. **TODO** Finalise the 1D heat diffusion code [/scripts/heat_1D_2procs_tmp.jl](/scripts/heat_1D_2procs_tmp.jl), splitting the calculation of temperature evolution on one left and one right domain. This "fake-parallelisation" requires left and right temperature arrays, `TL` and `TR`, respectively.
+18. **TODO** Generalise the "fake-parallel" approach on 2 processes to `n` processes by modifying the code [/scripts/heat_1D_nprocs_tmp.jl](/scripts/heat_1D_nprocs_tmp.jl), taking care of implementing the initial condition, heat diffusion physics and the boundary update.
+19. The script [/scripts/hello_mpi.jl](/scripts/hello_mpi.jl) shows a "Hello World" example implementing [MPI.jl]. Use this script to test your [MPI.jl] install (see the [Running Julia MPI](#running-julia-mpi) section for more infos on installing and running Julia MPI).
+20. Discover a concise MPI 1D heat diffusion example [/scripts/heat_1D_mpi.jl](/scripts/heat_1D_mpi.jl). Learn about the minimal requirements to initialise a Cartesian MPI topology and how to code the boundary update functions (here using blocking messages). Use the [/scripts/vizme1D_mpi.jl](/scripts/vizme1D_mpi.jl) script to visualise the results (each MPI process saving it's local output).
+21. **TODO** Yay, you have your MPI 1D Julia script running! Finalise the MPI 2D heat diffusion script [/scripts/heat_2D_mpi_tmp.jl](/scripts/heat_2D_mpi_tmp.jl) to solve the 2D diffusion equation using MPI. Use the [/scripts/vizme2D_mpi.jl](/scripts/vizme2D_mpi.jl) script to visualise the results (each MPI process saving it's local output).
+22. Now that you demystified distributed memory parallelisation, see how using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl] leads to concise and efficient distributed memory parallelisation on multiple _XPUs_ in 2D [/scripts/heat_2D_multixpu.jl](/scripts/heat_2D_multixpu.jl). Also, take a closer look at the [@hide_communication](https://github.com/luraess/geo-hpc-course/blob/0a722ac5f6da47779dfceadfec79b92c95e9e40e/scripts/heat_2D_multixpu.jl#L61) feature. Further infos can be found [here](https://github.com/omlins/ParallelStencil.jl#seamless-interoperability-with-communication-packages-and-hiding-communication).
+23. **TODO** Instrument the 2D shallow ice code sia_2D_xpu.jl (task 14.) to enable distributed memory parallelisation using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl]. _Use [/solutions/sia_2D_xpu.jl](/solutions/sia_2D_xpu.jl) for a quick start, and [/solutions/sia_2D_multixpu.jl](/solutions/sia_2D_multixpu.jl) for a solution._
+24. Yay, you made it - you demystified running Julia codes in parallel on multi-XPU :-) Q&A.
+
 
 ## Advanced start
 Steps already done on the GPU server you are running on (CentOS 8 linux)
 
+#### Julia
 Starting in the shell:
 ```sh
 $ wget https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-linux-x86_64.tar.gz
@@ -149,9 +190,16 @@ julia> ]
 (geo-hpc-course) pkg> add CUDA
 (geo-hpc-course) pkg> add Plots
 (geo-hpc-course) pkg> add https://github.com/omlins/ParallelStencil.jl
+(geo-hpc-course) pkg> add MPI
+(geo-hpc-course) pkg> add MAT
+(geo-hpc-course) pkg> add https://github.com/eth-cscs/ImplicitGlobalGrid.jl
+julia>
 julia> using CUDA
 julia> using Plots
 julia> using ParallelStencil
+julia> using MPI
+julia> using MAT
+julia> using ImplicitGlobalGrid
 ```
 _Note: Once [ParallelStencil.jl] will be registered, the `pkg> add` steps may be replaced by `instantiate`._
 
@@ -161,10 +209,41 @@ GPU_ID = ID
 CUDA.device!(GPU_ID)
 ```
 
+#### Julia MPI
+The following steps permit you to install [MPI.jl] on your machine:
+1. Add `MPI.jl`:
+```julia-repl
+(project) pkg> add MPI
+
+julia> using MPI
+[ Info: Precompiling MPI [da04e1cc-30fd-572f-bb4f-1f8673147195]
+
+julia> MPI.install_mpiexecjl()
+[ Info: Installing `mpiexecjl` to `HOME/.julia/bin`...
+[ Info: Done!
+```
+2. Then, one should add `HOME/.julia/bin` to PATH in order to launch the Julia MPI wrapper `mpiexecjl`.
+
+3. Running the Julia MPI code on 3 processes:
+```sh
+$ HOME/.julia/bin/mpiexecjl -n 4 julia --project scripts/hello_mpi.jl
+```
+_Note: On MacOS, there seems to be an issue (https://github.com/JuliaParallel/MPI.jl/issues/407). To fix it, define following `ENV` variable:_
+```sh
+$ export MPICH_INTERFACE_HOSTNAME=localhost
+```
+_and add `-host localhost` to the execution script:_
+```sh
+$ HOME/.julia/bin/mpiexecjl -n 3 -host localhost julia --project scripts/hello_mpi.jl
+```
+
+
 ## Extras
-[Julia] supports UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out-of-the-box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) examplifies these two fun capabilities.
+[Julia] supports UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out-of-the-box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) exemplifies these two fun capabilities.
 
 The code [/extras/sia_2D_ss_gif.jl](/extras/sia_2D_ss_gif.jl) uses the out-of-the-box gif-making capabilities to produce the SIA non-linear diffusion gif.
+
+The code [/extras/heat_2D_mpi_gif.jl](/extras/heat_2D_mpi_gif.jl) produces time-dependent output to be visualised as a gif using the [/extras/vizme2D_mpi_gif.jl](/extras/vizme2D_mpi_gif.jl) script.
 
 _Note: On Linux machines, [emoji] keyboard may need to be installed in order to display the Unicode emoticons._
 ```sh
@@ -192,6 +271,8 @@ $ sudo dnf install google-noto-emoji-color-fonts.noarch
 [CUDA.jl]: https://github.com/JuliaGPU/CUDA.jl
 [Plots.jl]: https://github.com/JuliaPlots/Plots.jl
 [ParallelStencil.jl]: https://github.com/omlins/ParallelStencil.jl
+[ImplicitGlobalGrid.jl]: https://github.com/eth-cscs/ImplicitGlobalGrid.jl
+[MPI.jl]: https://juliaparallel.github.io/MPI.jl/stable/examples/01-hello/
 [Julia REPL]: https://docs.julialang.org/en/v1/stdlib/REPL/
 [JuliaGPU]: https://juliagpu.org
 [emoji]: https://opensource.com/article/19/10/how-type-emoji-linux
