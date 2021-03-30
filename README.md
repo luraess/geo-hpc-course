@@ -1,6 +1,6 @@
-# geo-hpc-course
+# geo-HPC course
 
-#### Parallel CPU and GPU high-performance computing course
+**Parallel CPU and GPU high-performance computing course**
 This short course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This short course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
 
 The goal of this short course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable \[[1][JuliaCon20a], [2][JuliaCon20b], [3][JuliaCon19]\].
@@ -8,7 +8,7 @@ The goal of this short course is to offer an interactive and tutorial-like hands
 The iterative algorithms can be converted into efficient linear and non-linear solvers relying on a second order Richardson type of iterations strategy \[[4][Frankel50]]
 
 
-## Content
+# Content
 * [Objectives](#objectives)
 * [Pre-requisite](#pre-requisite)
 * [Material](#material)
@@ -19,7 +19,7 @@ The iterative algorithms can be converted into efficient linear and non-linear s
 * [Further reading](#further-reading)
 
 
-## Objectives
+# Objectives
 We will design and implement an iterative numerical algorithm that resolves (non-linear) diffusion in 2D for two applications:
 
 1. The diffusion of heat:
@@ -42,7 +42,9 @@ For an initial Gaussian distribution of ice and a circular and centred source/si
 
 ![sia non-linear diffusion 2D](/docs/sia_2D.gif)
 
-#### These two examples will enable to address the technical objectives of this course (3 parts).
+**These two examples will enable to address the technical objectives of this course (3 parts).**
+
+## Technical objectives of this course (3 parts)
 
 **_Part 1_** | We will use (1) as playground to address:
 - vectorised plain Julia implementation _CPU_ (idem as python, Matlab, Octave)
@@ -66,30 +68,27 @@ For an initial Gaussian distribution of ice and a circular and centred source/si
 - using [ImplicitGlobalGrid.jl] for high-level implementation along with [ParallelStencil.jl]
 
 
-## Pre-requisite
+# Pre-requisite
 The hands-on format prioritises the _learning-by-doing_ thus not much preliminary knowledge is required. Basic programming skills won't hurt though. The course will build upon the use of the [Julia] programming language. 
 
-#### Performance metric to compare the various code implementations
+## Performance metric to compare the various code implementations
 Majority of stencil based codes as in this course are memory bounded, meaning the limiting factor in performance is the rate at which memory is transferred from and back between the memory and the arithmetic units. The maximal rate at which the memory transfers occur is the memory copy rate, in the order of 50 GB/s for CPUs and about 1 TB/s for modern GPUs. The effective memory throughput metric (T_eff) measures how good an iterative stencil-based algorithm performs in terms of memory throughput, to be compared to the memory copy rate. The T_eff formula reads: `T_eff = (nIO/1e9*nxy*PRECIS)/(time_s/nt)`, where `nIO` is the number of read/write operations (2 for an update rule), `nxy` is the numerical grid resolution, `PRECIS` is the arithmetic precision (8 or 4 bytes per number), `time_s` is the execution time in second to perform `nt` iterations \[[1][JuliaCon20a]].
 
-#### Programming in Julia
+## Programming in Julia
 On the CPU, multi-threading is made accessible via [Base.Threads] and the environment variable [JULIA_NUM_THREADS] can be used to define the number of cores to use on the CPU, e.g. `export JULIA_NUM_THREADS=2` to enable 2 threads (2 CPU cores). The [CUDA.jl] module permits to launch compute kernels on Nvidia GPUs within Julia. [JuliaGPU] provides further reading and introductory material about GPU ecosystem within [Julia].
 
 
-## Material
+# Material
 The course material contains some ready-to-run _example_ scripts, draft _tmp_ scripts to be complete as tasks during the course and their corresponding _solution_ scripts.
 
-#### example scripts
-The active working directory for the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts to work on.
-
-#### solution scripts
-All _tmp_ scripts have their corresponding solution scripts located in [/solutions/](/solutions/)
+- **example scripts |** The active working directory for the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts to work on.
+- **solution scripts |** All _tmp_ scripts have their corresponding solution scripts located in [/solutions/](/solutions/)
 
 
-## Getting started
+# Getting started
 If it applies, follow the instructions provided on the course's private channel. 
 
-#### Julia quick start
+## Julia quick start
 In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solutions or "cheat-sheets" can be found in the [/solutions/](/solutions/) folder. The examples rely on 3 main Julia modules, `Plots.jl` (and `PyPlot.jl`) and `CUDA.jl`. The XPU examples require [ParallelStencil.jl] to be installed. The MPI examples require `MPI.jl` to be installed. The multi-XPU scripts require [ImplicitGlobalGrid.jl] to be installed.
 
 There are two ways of executing a Julia script, from the Julia command window known as the [Julia REPL], or from the terminal shell directly. The MPI and multi-XPU examples need to be executed from the terminal shell.
@@ -103,7 +102,7 @@ Then, in the [Julia REPL], you can execute the script as following:
 ```julia-repl
 julia> include("<my_script>.jl")
 ```
-Note that typing `;` in the [Julia REPL] permits you to execute shell commands (like `cd ..`).
+> 💡 Note that typing `;` in the [Julia REPL] permits you to execute shell commands (like `cd ..`).
 
 For optimal performance (like measuring T_eff) and for running Julia MPI, run Julia as executable from the shell directly, using the optimisation flag `-O3` and disabling bound checking `--check-bounds=no` as following:
 ```sh
@@ -113,7 +112,7 @@ Note that interactive plotting may fail then.
 
 Set the default `viz = false` flag to `true` if you want to plot output in all codes beyond step 2.
 
-#### Running Julia MPI
+## Running Julia MPI
 This section is about launching a Julia MPI script. For [MPI.jl] install notes, refer to the [Advanced start - Julia MPI](#julia-mpi) section and the [MPI.jl] doc. In the proposed approach, each MPI process will handle one CPU thread. In the MPI GPU case (multi-GPUs), each MPI process handles one GPU.
 
 Assuming a working Julia MPI installation, a Julia MPI program can be launched using the Julia MPI wrapper `mpiexecjl` (located in `~/.julia/bin`).
@@ -136,7 +135,7 @@ _Note: The presented concise Julia MPI scripts are inspired from [this 2D python
 Advanced documentation on running the multi-XPU codes can be found in the [ParallelStencil.jl module documentation](https://github.com/omlins/ParallelStencil.jl#miniapp-content).
 
 
-## Course outline
+# Course outline
 During the course, we will go through the following steps:
 
 1. **Intro _part 1_**
@@ -171,37 +170,27 @@ During the course, we will go through the following steps:
 24. Yay, you made it - you demystified running Julia codes in parallel on multi-XPU :-) Q&A.
 
 
-## Advanced start
+# Advanced start
 Steps already done on the GPU server you are running on (CentOS 8 linux)
 
-#### Julia
+## Julia
 Starting in the shell:
 ```sh
-$ wget https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-linux-x86_64.tar.gz
-$ tar -xzf julia-1.5.3-linux-x86_64.tar.gz
-$ vim ~/.bashrc # Add the line: PATH=~/julia-1.5.3/bin/:$PATH
+$ wget https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.4-linux-x86_64.tar.gz
+$ tar -xzf julia-1.5.4-linux-x86_64.tar.gz
+$ vim ~/.bashrc # Add the line: PATH=~/julia-1.5.4/bin/:$PATH
 $ export JULIA_CUDA_USE_BINARYBUILDER=false
 $ cd <path-to>/geo-hpc-course/
 $ julia --project
 ```
-In case, modules can be manually added within Julia:
+Once Julia launched, enter the package mode `]` and `instantiate` the project. This will download all the project's dependencies and install them:
 ```julia-repl
 julia> ]
-(geo-hpc-course) pkg> add CUDA
-(geo-hpc-course) pkg> add Plots
-(geo-hpc-course) pkg> add https://github.com/omlins/ParallelStencil.jl
-(geo-hpc-course) pkg> add MPI
-(geo-hpc-course) pkg> add MAT
-(geo-hpc-course) pkg> add https://github.com/eth-cscs/ImplicitGlobalGrid.jl
+
+(geo-hpc-course) pkg> instantiate
+
 julia>
-julia> using CUDA
-julia> using Plots
-julia> using ParallelStencil
-julia> using MPI
-julia> using MAT
-julia> using ImplicitGlobalGrid
 ```
-_Note: Once [ParallelStencil.jl] will be registered, the `pkg> add` steps may be replaced by `instantiate`._
 
 If your GPU system contains more than one GPU, you can add following at the beginning of each `gpu` named code to target a specific device identified by its unique `ID` (default being `0`):
 ```julia
@@ -209,7 +198,7 @@ GPU_ID = ID
 CUDA.device!(GPU_ID)
 ```
 
-#### Julia MPI
+## Julia MPI
 The following steps permit you to install [MPI.jl] on your machine:
 1. Add `MPI.jl`:
 ```julia-repl
@@ -228,30 +217,30 @@ julia> MPI.install_mpiexecjl()
 ```sh
 $ HOME/.julia/bin/mpiexecjl -n 4 julia --project scripts/hello_mpi.jl
 ```
-_Note: On MacOS, there seems to be an issue (https://github.com/JuliaParallel/MPI.jl/issues/407). To fix it, define following `ENV` variable:_
+> 💡 Note: On MacOS, there seems to be an issue (https://github.com/JuliaParallel/MPI.jl/issues/407). To fix it, define following `ENV` variable:
 ```sh
 $ export MPICH_INTERFACE_HOSTNAME=localhost
 ```
-_and add `-host localhost` to the execution script:_
+and add `-host localhost` to the execution script:
 ```sh
 $ HOME/.julia/bin/mpiexecjl -n 3 -host localhost julia --project scripts/hello_mpi.jl
 ```
 
 
-## Extras
+# Extras
 [Julia] supports UTF-8 (Unicode) characters. Also, the plotting package [Plots.jl] permits to create gif animation out-of-the-box. The [/extras/heat_2D_gif_unicode.jl](/extras/heat_2D_gif_unicode.jl) exemplifies these two fun capabilities.
 
 The code [/extras/sia_2D_ss_gif.jl](/extras/sia_2D_ss_gif.jl) uses the out-of-the-box gif-making capabilities to produce the SIA non-linear diffusion gif.
 
 The code [/extras/heat_2D_mpi_gif.jl](/extras/heat_2D_mpi_gif.jl) produces time-dependent output to be visualised as a gif using the [/extras/vizme2D_mpi_gif.jl](/extras/vizme2D_mpi_gif.jl) script.
 
-_Note: On Linux machines, [emoji] keyboard may need to be installed in order to display the Unicode emoticons._
+> 💡 Note: On Linux machines, [emoji] keyboard may need to be installed in order to display the Unicode emoticons.
 ```sh
 $ sudo dnf install google-noto-emoji-color-fonts.noarch
 ```
 
 
-## Further reading
+# Further reading
 \[1\] [Omlin, S., Räss, L., Kwasniewski, G., Malvoisin, B., & Podladchikov, Y. Y. (2020). Solving Nonlinear Multi-Physics on GPU Supercomputers with Julia. JuliaCon Conference, virtual.][JuliaCon20a]
 
 \[2\] [Räss, L., Reuber, G., Omlin, S. (2020). Multi-Physics 3-D Inversion on GPU Supercomputers with Julia. JuliaCon Conference, virtual.][JuliaCon20b]
