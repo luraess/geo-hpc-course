@@ -1,6 +1,7 @@
 # geo-HPC course
 
 **Parallel CPU and GPU high-performance computing course**
+
 This short course aims at providing an interactive and applied approach in an hands-on format to parallel and high-performance computing in Julia. This short course covers trendy areas in modern geocomputing. Seeking at solutions of differential equations requires efficient numerical schemes optimally leveraging modern hardware. These solvers permit to resolve scientific problems that where technically not possible a decade ago.
 
 The goal of this short course is to offer an interactive and tutorial-like hands-on to solve systems of differential equations in parallel on many-core hardware accelerators such as GPUs using the Julia language. Julia combines high-level language simplicity to low-level language performance. The resulting codes and applications are fast, short and readable \[[1][JuliaCon20a], [2][JuliaCon20b], [3][JuliaCon19]\].
@@ -81,8 +82,8 @@ On the CPU, multi-threading is made accessible via [Base.Threads] and the enviro
 # Material
 The course material contains some ready-to-run _example_ scripts, draft _tmp_ scripts to be complete as tasks during the course and their corresponding _solution_ scripts.
 
-- **example scripts |** The active working directory for the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts to work on.
-- **solution scripts |** All _tmp_ scripts have their corresponding solution scripts located in [/solutions/](/solutions/)
+- **_example scripts_ |** The active working directory for the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts to work on.
+- **_solution scripts_ |** All _tmp_ scripts have their corresponding solution scripts located in [/solutions/](/solutions/)
 
 
 # Getting started
@@ -221,7 +222,7 @@ $ HOME/.julia/bin/mpiexecjl -n 4 julia --project scripts/hello_mpi.jl
 ```sh
 $ export MPICH_INTERFACE_HOSTNAME=localhost
 ```
-and add `-host localhost` to the execution script:
+> and add `-host localhost` to the execution script:
 ```sh
 $ HOME/.julia/bin/mpiexecjl -n 3 -host localhost julia --project scripts/hello_mpi.jl
 ```
