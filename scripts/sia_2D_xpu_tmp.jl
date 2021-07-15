@@ -3,11 +3,8 @@ using ParallelStencil
 using ParallelStencil.FiniteDifferences2D
 @static if USE_GPU
     @init_parallel_stencil(CUDA, Float64, 2)
-    macro pow(args...)  esc(:(CUDA.pow($(args...)))) end
 else
     @init_parallel_stencil(Threads, Float64, 2)
-    pow(x,y) = x^y
-    macro pow(args...)  esc(:(pow($(args...)))) end
 end
 using Plots, Printf, Statistics
 # pyplot()

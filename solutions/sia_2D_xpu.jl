@@ -3,11 +3,8 @@ using ParallelStencil
 using ParallelStencil.FiniteDifferences2D
 @static if USE_GPU
     @init_parallel_stencil(CUDA, Float64, 2)
-    macro pow(args...)  esc(:(CUDA.pow($(args...)))) end
 else
     @init_parallel_stencil(Threads, Float64, 2)
-    pow(x,y) = x^y
-    macro pow(args...)  esc(:(pow($(args...)))) end
 end
 using Plots, Printf, Statistics
 # pyplot()
@@ -24,13 +21,13 @@ end
 end
 
 @parallel function compute_flux!(qx::Data.Array, qy::Data.Array, H::Data.Array, n::Data.Number, dx::Data.Number, dy::Data.Number)
-    @all(qx) = -@pow( @av_xi(H), n)*@d_xi(H)/dx
-    @all(qy) = -@pow( @av_yi(H), n)*@d_yi(H)/dy
+    @all(qx) = -@av_xi(H)^n*@d_xi(H)/dx
+    @all(qy) = -@av_yi(H)^n*@d_yi(H)/dy
     return
 end
 
 @parallel function compute_ResH!(dtau::Data.Array, ResH::Data.Array, H::Data.Array, qx::Data.Array, qy::Data.Array, b::Data.Array, n::Data.Number, dmp::Data.Number, dx::Data.Number, dy::Data.Number)
-    @all(dtau) = min(dx*dx, dy*dy)/(1.0 + @pow(@inn(H), n))/4.1./4.0
+    @all(dtau) = min(dx*dx, dy*dy)/(1.0 + @inn(H)^n)/4.1./4.0
     @all(ResH) = (-@d_xa(qx)/dx  - @d_ya(qy)/dy + @inn(b)) + dmp*@all(ResH)
     return
 end

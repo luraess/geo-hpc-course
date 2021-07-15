@@ -1,7 +1,9 @@
 # run: ~/.julia/bin/mpiexecjl -n 4 julia --project scripts/heat_1D_mpi.jl
 using Plots, Printf, MAT
 import MPI
+
 do_save = true
+
 # MPI functions
 @views function update_halo(A, neighbors_x, comm)
     if neighbors_x[1] >= 0 # MPI_PROC_NULL?

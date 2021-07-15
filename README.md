@@ -31,7 +31,7 @@ qy     	= -λ*dT/dy
 ```
 For an initial Gaussian distribution, the heat diffusion code produces following output:
 
-![heat diffusion 2D](/docs/heat_2D.gif)
+![heat diffusion 2D](docs/heat_2D.gif)
 
 2. The non-linear diffusion of ice topography (simplified shallow-ice):
 ```julia
@@ -41,7 +41,7 @@ qy     	= -H^n*dH/dy
 ```
 For an initial Gaussian distribution of ice and a circular and centred source/sink term, the simplified shallow-ice code produces following output while reaching a steady state:
 
-![sia non-linear diffusion 2D](/docs/sia_2D.gif)
+![sia non-linear diffusion 2D](docs/sia_2D.gif)
 
 **These two examples will enable to address the technical objectives of this course (3 parts).**
 
@@ -82,15 +82,15 @@ On the CPU, multi-threading is made accessible via [Base.Threads] and the enviro
 # Material
 The course material contains some ready-to-run _example_ scripts, draft _tmp_ scripts to be complete as tasks during the course and their corresponding _solution_ scripts.
 
-- **_example scripts_ |** The active working directory for the course will be [/scripts/](/scripts/), that contains the example scripts and the _tmp_ scripts to work on.
-- **_solution scripts_ |** All _tmp_ scripts have their corresponding solution scripts located in [/solutions/](/solutions/)
+- **_example scripts_ |** The active working directory for the course will be [scripts](scripts), that contains the example scripts and the _tmp_ scripts to work on.
+- **_solution scripts_ |** All _tmp_ scripts have their corresponding solution scripts located in [solutions](solutions)
 
 
 # Getting started
 If it applies, follow the instructions provided on the course's private channel. 
 
 ## Julia quick start
-In general, clone this repo (or download it otherwise) to run the example [/scripts/](/scripts/) and access the draft [/scripts/](/scripts/) to be completed during the course. Solutions or "cheat-sheets" can be found in the [/solutions/](/solutions/) folder. The examples rely on 3 main Julia modules, `Plots.jl` (and `PyPlot.jl`) and `CUDA.jl`. The XPU examples require [ParallelStencil.jl] to be installed. The MPI examples require `MPI.jl` to be installed. The multi-XPU scripts require [ImplicitGlobalGrid.jl] to be installed.
+In general, clone this repo (or download it otherwise) to run the example [scripts](scripts) and access the draft [scripts](scripts) to be completed during the course. Solutions or "cheat-sheets" can be found in the [solutions](solutions) folder. The examples rely on 3 main Julia modules, `Plots.jl` (and `PyPlot.jl`) and `CUDA.jl`. The XPU examples require [ParallelStencil.jl] to be installed. The MPI examples require `MPI.jl` to be installed. The multi-XPU scripts require [ImplicitGlobalGrid.jl] to be installed.
 
 There are two ways of executing a Julia script, from the Julia command window known as the [Julia REPL], or from the terminal shell directly. The MPI and multi-XPU examples need to be executed from the terminal shell.
 
@@ -118,7 +118,7 @@ This section is about launching a Julia MPI script. For [MPI.jl] install notes, 
 
 Assuming a working Julia MPI installation, a Julia MPI program can be launched using the Julia MPI wrapper `mpiexecjl` (located in `~/.julia/bin`).
 
-Running the Julia MPI [/scripts/hello_mpi.jl](/scripts/hello_mpi.jl) script on 4 processes can be achieved following:
+Running the Julia MPI [`hello_mpi.jl`](scripts/hello_mpi.jl) script on 4 processes can be achieved following:
 ```sh
 $ mpiexecjl -n 4 julia --project scripts/hello_mpi.jl
 $ Hello world, I am 0 of 3
@@ -127,9 +127,9 @@ $ Hello world, I am 2 of 3
 $ Hello world, I am 3 of 3
 ```
 
-The 2D Julia MPI diffusion script [/solutions/heat_2D_mpi.jl](/solutions/heat_2D_mpi.jl) executed on 4 MPI processes (global grid: 2x2) produces the following output (see [Extras](#extras) for infos about the gif-making scripts).
+The 2D Julia MPI diffusion script [`heat_2D_mpi.jl`](solutions/heat_2D_mpi.jl) executed on 4 MPI processes (global grid: 2x2) produces the following output (see [Extras](#extras) for infos about the gif-making scripts).
 
-![heat diffusion 2D](/docs/heat_2D_mpi_4procs.gif)
+![heat diffusion 2D](docs/heat_2D_mpi_4procs.gif)
 
 _Note: The presented concise Julia MPI scripts are inspired from [this 2D python script](https://github.com/omlins/adios2-tutorial/blob/main/example/mpi_diffusion2D.py)._
 
@@ -140,35 +140,35 @@ Advanced documentation on running the multi-XPU codes can be found in the [Paral
 During the course, we will go through the following steps:
 
 1. **Intro _part 1_**
-2. **TODO** Finalise the 1D heat diffusion code [/scripts/heat_1D_tmp.jl](/scripts/heat_1D_tmp.jl), implementing the equations from [Objectives 1.](#objectives)
-3. See how the diffusion looks like in 2D [/scripts/heat_2D.jl](/scripts/heat_2D.jl).
-4. **TODO** Finalise the 2D loop version of the heat code [/scripts/heat_2D_loop_tmp.jl](/scripts/heat_2D_loop_tmp.jl).
-5. **TODO** Import the flux and `T` loop calculations in the heat code using external "kernel"-like compute functions [/scripts/heat_2D_loop_fun_tmp.jl](/scripts/heat_2D_loop_fun_tmp.jl).
-6. See how the function-based loop version (5.) can be further extended to checking bounds with `if` statement in the `ix` and `iy` loops, including "loop-fusion" for the flux computations [/scripts/heat_2D_loop_fun_gpustyle.jl](/scripts/heat_2D_loop_fun_gpustyle.jl).
-7. See how one can simply use the **GPU** to perform the 2D heat diffusion calculations [/scripts/heat_2D_gpu.jl](/scripts/heat_2D_gpu.jl).
-8. **TODO** The performance "magic"; update the script [/scripts/heat_2D_gpu_fun_tmp.jl](/scripts/heat_2D_gpu_fun_tmp.jl) based on previous knowledge and step (5.).
-9. See how steps 5., 6. and 7. can be combined into a single code using [ParallelStencil.jl] in [/scripts/heat_2D_xpu.jl](/scripts/heat_2D_xpu.jl)
+2. **TODO** Finalise the 1D heat diffusion code [`heat_1D_tmp.jl`](scripts/heat_1D_tmp.jl), implementing the equations from [Objectives 1.](#objectives)
+3. See how the diffusion looks like in 2D [`heat_2D.jl`](scripts/heat_2D.jl).
+4. **TODO** Finalise the 2D loop version of the heat code [`heat_2D_loop_tmp.jl`](scripts/heat_2D_loop_tmp.jl).
+5. **TODO** Import the flux and `T` loop calculations in the heat code using external "kernel"-like compute functions [`heat_2D_loop_fun_tmp.jl`](scripts/heat_2D_loop_fun_tmp.jl).
+6. See how the function-based loop version (5.) can be further extended to checking bounds with `if` statement in the `ix` and `iy` loops, including "loop-fusion" for the flux computations [`heat_2D_loop_fun_gpustyle.jl`](scripts/heat_2D_loop_fun_gpustyle.jl).
+7. See how one can simply use the **GPU** to perform the 2D heat diffusion calculations [`heat_2D_gpu.jl`](scripts/heat_2D_gpu.jl).
+8. **TODO** The performance "magic"; update the script [`heat_2D_gpu_fun_tmp.jl`](scripts/heat_2D_gpu_fun_tmp.jl) based on previous knowledge and step (5.).
+9. See how steps 5., 6. and 7. can be combined into a single code using [ParallelStencil.jl] in [`heat_2D_xpu.jl`](scripts/heat_2D_xpu.jl)
 10. Discussion on CPU vs GPU architectures and performance evaluation (T_eff). Q&A.
 
 ---
 
 11. **Intro _part 2_**
-12. **TODO** Based on your acquired experience, finalise the [/scripts/sia_2D_tmp.jl](/scripts/sia_2D_tmp.jl) script to convert the heat diffusion `T` into an ice cap thickness `H` evolution over time.
+12. **TODO** Based on your acquired experience, finalise the [`sia_2D_tmp.jl`](scripts/sia_2D_tmp.jl) script to convert the heat diffusion `T` into an ice cap thickness `H` evolution over time.
 13. **TODO** Modify the the script from (12.) to have an implicit solver while reaching a steady-state solution.
-14. **TODO** (NEW!) You demystified GPU computing with completing step 9. Update now the script [/scripts/sia_2D_xpu_tmp.jl](/scripts/sia_2D_xpu_tmp.jl) to have an XPU (CPU or GPU) code ready!
+14. **TODO** (NEW!) You demystified GPU computing with completing step 9. Update now the script [`sia_2D_xpu_tmp.jl`](scripts/sia_2D_xpu_tmp.jl) to have an XPU (CPU or GPU) code ready!
 15. Discussion about pseudo-transient solvers, damping and convergence. Q&A.
 
 ---
 
 16. **Intro _part 3_ (NEW!)**
-17. **TODO** Finalise the 1D heat diffusion code [/scripts/heat_1D_2procs_tmp.jl](/scripts/heat_1D_2procs_tmp.jl), splitting the calculation of temperature evolution on one left and one right domain. This "fake-parallelisation" requires left and right temperature arrays, `TL` and `TR`, respectively.
-18. **TODO** Generalise the "fake-parallel" approach on 2 processes to `n` processes by modifying the code [/scripts/heat_1D_nprocs_tmp.jl](/scripts/heat_1D_nprocs_tmp.jl), taking care of implementing the initial condition, heat diffusion physics and the boundary update.
-19. The script [/scripts/hello_mpi.jl](/scripts/hello_mpi.jl) shows a "Hello World" example implementing [MPI.jl]. Use this script to test your [MPI.jl] install (see the [Running Julia MPI](#running-julia-mpi) section for more infos on installing and running Julia MPI).
-20. Discover a concise MPI 1D heat diffusion example [/scripts/heat_1D_mpi.jl](/scripts/heat_1D_mpi.jl). Learn about the minimal requirements to initialise a Cartesian MPI topology and how to code the boundary update functions (here using blocking messages). Use the [/scripts/vizme1D_mpi.jl](/scripts/vizme1D_mpi.jl) script to visualise the results (each MPI process saving it's local output).
-21. **TODO** Yay, you have your MPI 1D Julia script running! Finalise the MPI 2D heat diffusion script [/scripts/heat_2D_mpi_tmp.jl](/scripts/heat_2D_mpi_tmp.jl) to solve the 2D diffusion equation using MPI. Use the [/scripts/vizme2D_mpi.jl](/scripts/vizme2D_mpi.jl) script to visualise the results (each MPI process saving it's local output).
-22. Now that you demystified distributed memory parallelisation, see how using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl] leads to concise and efficient distributed memory parallelisation on multiple _XPUs_ in 2D [/scripts/heat_2D_multixpu.jl](/scripts/heat_2D_multixpu.jl). Also, take a closer look at the [@hide_communication](https://github.com/luraess/geo-hpc-course/blob/0a722ac5f6da47779dfceadfec79b92c95e9e40e/scripts/heat_2D_multixpu.jl#L61) feature. Further infos can be found [here](https://github.com/omlins/ParallelStencil.jl#seamless-interoperability-with-communication-packages-and-hiding-communication).
+17. **TODO** Finalise the 1D heat diffusion code [`heat_1D_2procs_tmp.jl`](scripts/heat_1D_2procs_tmp.jl), splitting the calculation of temperature evolution on one left and one right domain. This "fake-parallelisation" requires left and right temperature arrays, `TL` and `TR`, respectively.
+18. **TODO** Generalise the "fake-parallel" approach on 2 processes to `n` processes by modifying the code [`heat_1D_nprocs_tmp.jl`](scripts/heat_1D_nprocs_tmp.jl), taking care of implementing the initial condition, heat diffusion physics and the boundary update.
+19. The script [`hello_mpi.jl`](scripts/hello_mpi.jl) shows a "Hello World" example implementing [MPI.jl]. Use this script to test your [MPI.jl] install (see the [Running Julia MPI](#running-julia-mpi) section for more infos on installing and running Julia MPI).
+20. Discover a concise MPI 1D heat diffusion example [`heat_1D_mpi.jl`](scripts/heat_1D_mpi.jl). Learn about the minimal requirements to initialise a Cartesian MPI topology and how to code the boundary update functions (here using blocking messages). Use the [`vizme1D_mpi.jl`](scripts/vizme1D_mpi.jl) script to visualise the results (each MPI process saving it's local output).
+21. **TODO** Yay, you have your MPI 1D Julia script running! Finalise the MPI 2D heat diffusion script [`heat_2D_mpi_tmp.jl`](scripts/heat_2D_mpi_tmp.jl) to solve the 2D diffusion equation using MPI. Use the [`vizme2D_mpi.jl`](scripts/vizme2D_mpi.jl) script to visualise the results (each MPI process saving it's local output).
+22. Now that you demystified distributed memory parallelisation, see how using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl] leads to concise and efficient distributed memory parallelisation on multiple _XPUs_ in 2D [`heat_2D_multixpu.jl`](scripts/heat_2D_multixpu.jl). Also, take a closer look at the [@hide_communication](https://github.com/luraess/geo-hpc-course/blob/0a722ac5f6da47779dfceadfec79b92c95e9e40e/scripts/heat_2D_multixpu.jl#L61) feature. Further infos can be found [here](https://github.com/omlins/ParallelStencil.jl#seamless-interoperability-with-communication-packages-and-hiding-communication).
 23. **TODO** Instrument the 2D shallow ice code sia_2D_xpu.jl (task 14.) to enable distributed memory parallelisation using [ImplicitGlobalGrid.jl] along with [ParallelStencil.jl].
-> 💡 Use [/solutions/sia_2D_xpu.jl](/solutions/sia_2D_xpu.jl) for a quick start, and [/solutions/sia_2D_multixpu.jl](/solutions/sia_2D_multixpu.jl) for a solution.
+> 💡 Use [`sia_2D_xpu.jl`](solutions/sia_2D_xpu.jl) for a quick start, and [`sia_2D_multixpu.jl`](solutions/sia_2D_multixpu.jl) for a solution.
 24. Yay, you made it - you demystified running Julia codes in parallel on multi-XPU :-) Q&A.
 
 
@@ -178,10 +178,9 @@ Steps already done on the GPU server you are running on (CentOS 8 linux)
 ## Julia
 Starting in the shell:
 ```sh
-$ wget https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.4-linux-x86_64.tar.gz
-$ tar -xzf julia-1.5.4-linux-x86_64.tar.gz
-$ vim ~/.bashrc # Add the line: PATH=~/julia-1.5.4/bin/:$PATH
-$ export JULIA_CUDA_USE_BINARYBUILDER=false
+$ wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.2-linux-x86_64.tar.gz
+$ tar -xzf julia-1.6.2-linux-x86_64.tar.gz
+$ vim ~/.bashrc # Add the line: PATH=~/julia-1.6.2/bin/:$PATH
 $ cd <path-to>/geo-hpc-course/
 $ julia --project
 ```
@@ -215,7 +214,7 @@ julia> MPI.install_mpiexecjl()
 ```
 2. Then, one should add `HOME/.julia/bin` to PATH in order to launch the Julia MPI wrapper `mpiexecjl`.
 
-3. Running the Julia MPI code on 3 processes:
+3. Running the Julia MPI code on 4 processes:
 ```sh
 $ HOME/.julia/bin/mpiexecjl -n 4 julia --project scripts/hello_mpi.jl
 ```
@@ -225,7 +224,7 @@ $ export MPICH_INTERFACE_HOSTNAME=localhost
 ```
 > and add `-host localhost` to the execution script:
 ```sh
-$ HOME/.julia/bin/mpiexecjl -n 3 -host localhost julia --project scripts/hello_mpi.jl
+$ HOME/.julia/bin/mpiexecjl -n 4 -host localhost julia --project scripts/hello_mpi.jl
 ```
 
 

@@ -16,8 +16,8 @@ do_viz = false
     dt     = min(dx^2,dy^2)/ρCp/λ/4.1
     xc     = LinRange(dx/2, lx-dx/2, nx)
     yc     = LinRange(dy/2, ly-dy/2, ny)
-    qx     = CUDA.zeros(nx-1,ny-2)
-    qy     = CUDA.zeros(nx-2,ny-1)
+    qx     = CUDA.zeros(Float64, nx-1,ny-2)
+    qy     = CUDA.zeros(Float64, nx-2,ny-1)
     # Initial condition
     T      = CuArray( exp.(.-(xc.-lx./2.0).^2 .-(yc.-ly./2.0)'.^2) )
     # Time loop
